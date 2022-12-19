@@ -1,0 +1,25 @@
+{
+  "include": [
+    "src/**/**/*", 
+    "tsconfig.json",
+  ],
+  "compilerOptions": {
+    "jsx": "react",
+    "moduleResolution": "node",
+    "target": "esnext",
+    "module": "es6",
+    "allowJs": true,
+    "checkJs": false,
+    "outDir": "build",
+    "rootDir": ".",
+    "noImplicitAny": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+  },
+   "exclude": ["node_modules", "build"],
+}
