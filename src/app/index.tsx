@@ -1,11 +1,10 @@
 import React from "react";
-import '../Common/Styles/Style.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Layout } from "src/pages1/Layout";
-import { GoodsPage } from "src/pages1/GoodsPage";
-import { GoodsItemPage } from "src/pages1/GoodPage";
-import { CartPage } from "src/pages1/CartPage";
-import { NotFoundPage } from "src/pages1/NotFoundPage";
+import { GoodsPage } from "src/pages/GoodsPage";
+import { GoodsItemPage } from "src/pages/GoodPage";
+import { CartPage } from "src/pages/CartPage";
+import { Layout } from "src/pages/Layout";
+import { NotFoundPage } from "src/pages/NotFoundPage";
 
 const router = createBrowserRouter([
   {

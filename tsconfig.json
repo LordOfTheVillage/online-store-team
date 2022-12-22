@@ -9,7 +9,7 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "App": ["src/app1"],
+      "App": ["src/app"],
       "Pages/*": ["src/pages1/*"]
     }
   },
