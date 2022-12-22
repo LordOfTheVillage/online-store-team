@@ -1,4 +1,4 @@
-const path = require("path")
+const path = require('path');
 
 module.exports = (env) => {
   const modules = {
@@ -7,37 +7,30 @@ module.exports = (env) => {
       exclude: /node_modules/,
       use: [
         {
-          loader: "ts-loader",
+          loader: 'ts-loader',
         },
       ],
     },
-    stylus: {
-      test: /\.styl$/,
-      use: [
-        {
-          loader: "style-loader",
-        },
-        {
-          loader: "css-loader",
-        },
-      ],
+    css: {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader', 'postcss-loader'],
     },
-  }
+  };
 
-  if (env === "production") {
-    modules.stylus.use.splice(2, 0, { loader: "postcss-loader" })
+  if (env === 'production') {
+    modules.stylus.use.splice(2, 0, { loader: 'postcss-loader' });
   }
 
   const resolve = {
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
-      App: path.resolve(__dirname, "src/App/"),
-      Pages: path.resolve(__dirname, "src/Pages/"),
+      App: path.resolve(__dirname, 'src/App/'),
+      Pages: path.resolve(__dirname, 'src/Pages/'),
     },
-  }
+  };
 
   return {
     modules,
     resolve,
-  }
-}
+  };
+};

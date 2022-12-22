@@ -29,7 +29,7 @@ module.exports = (env, argv) => {
     },
     resolve: config.resolve,
     module: {
-      rules: [config.modules.js, config.modules.stylus],
+      rules: [config.modules.js, config.modules.css],
     },
     plugins: [
       new CleanWebpackPlugin(),
