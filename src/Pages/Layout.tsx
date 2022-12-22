@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {FC} from 'react'
 import { Outlet } from 'react-router-dom'
 
-export default function Layout () {
+export const Layout: FC = () => {
   return <>
   <header>
     <div>This is header</div>

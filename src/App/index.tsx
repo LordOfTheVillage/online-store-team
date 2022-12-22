@@ -1,11 +1,11 @@
-import CartPage from "Pages/CartPage";
-import GoodPage from "Pages/GoodPage";
-import GoodsPage from "Pages/GoodsPage";
-import Layout from "Pages/Layout";
-import NotFoundPage from "Pages/NotFoundPage";
 import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import '../Common/Styles/Style.css'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Layout } from "Pages/Layout";
+import { GoodsPage } from "Pages/GoodsPage";
+import { GoodsItemPage } from "Pages/GoodPage";
+import { CartPage } from "Pages/CartPage";
+import { NotFoundPage } from "Pages/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/goods/:id",
-        element: <GoodPage />
+        element: <GoodsItemPage />
       },
       {
         path: "/cart",
@@ -32,6 +32,6 @@ const router = createBrowserRouter([
   },
 ])
 
-export default function App() {
+export const App = () => {
   return <RouterProvider router={router} />
 }

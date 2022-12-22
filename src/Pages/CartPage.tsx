@@ -1,5 +1,5 @@
-import React from 'react'
+import React, {FC} from 'react'
 
-export default function CartPage() {
+export const CartPage: FC = () => {
   return <div>This is a cart page</div>
 }

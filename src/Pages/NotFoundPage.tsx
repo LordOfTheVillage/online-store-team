@@ -1,5 +1,5 @@
-import React from 'react'
+import React, {FC} from 'react'
 
-export default function NotFoundPage() {
+export const NotFoundPage: FC = () => {
   return <div>This page isn't founded</div>
 }
