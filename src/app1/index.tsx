@@ -1,11 +1,11 @@
 import React from "react";
 import '../Common/Styles/Style.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Layout } from "src/pages/Layout";
-import { GoodsPage } from "src/pages/GoodsPage";
-import { GoodsItemPage } from "src/pages/GoodPage";
-import { CartPage } from "src/pages/CartPage";
-import { NotFoundPage } from "src/pages/NotFoundPage";
+import { Layout } from "src/pages1/Layout";
+import { GoodsPage } from "src/pages1/GoodsPage";
+import { GoodsItemPage } from "src/pages1/GoodPage";
+import { CartPage } from "src/pages1/CartPage";
+import { NotFoundPage } from "src/pages1/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +32,6 @@ const router = createBrowserRouter([
   },
 ])
 
-export const App = () => {
+export default function App() {
   return <RouterProvider router={router} />
 }
