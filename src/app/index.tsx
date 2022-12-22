@@ -1,10 +1,10 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { GoodsPage } from "src/pages/GoodsPage";
-import { GoodsItemPage } from "src/pages/GoodPage";
-import { CartPage } from "src/pages/CartPage";
-import { Layout } from "src/pages/Layout";
-import { NotFoundPage } from "src/pages/NotFoundPage";
+import { GoodsPage } from "../pages/GoodsPage";
+import { GoodsItemPage } from "../pages/GoodPage";
+import { CartPage } from "../pages/CartPage";
+import { Layout } from "../pages/Layout";
+import { NotFoundPage } from "../pages/NotFoundPage";
 
 const router = createBrowserRouter([
   {
