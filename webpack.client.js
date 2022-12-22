@@ -25,7 +25,8 @@ module.exports = (env, argv) => {
 
   return {
     devServer: {
-      port: 9000,
+      port: 5000,
+      historyApiFallback: true,
     },
     resolve: config.resolve,
     module: {
