@@ -1,0 +1,22 @@
+
+// PrimaryInput
+
+.input-primary{
+	display: flex;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+  height: 2.5rem;
+  padding: 2px 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: $black;
+  background-color: #fff;
+  border: 1px solid #E0BEA2;
+}
+
+.input-primary:invalid + .input-primary::before{
+	content: 'Error';
+	display: inline-flex;
+	position: absolute;
+}

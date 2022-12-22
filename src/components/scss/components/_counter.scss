@@ -1,0 +1,32 @@
+
+.counter {
+
+	width: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 12px;
+	@include border;
+
+	& >*{
+		width: calc((100px - 32px) / 3);
+	}
+
+	// .counter__btn
+
+	&__btn {
+		color: $gold-l;
+		font-size: 30px;
+		font-weight: bold;
+
+		&:hover, &:active{
+			color: $gold-d;
+		}
+	}
+
+	// .counter__val
+
+	&__val {
+		font-size: 16px;
+	}
+}

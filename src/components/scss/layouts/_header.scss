@@ -1,0 +1,46 @@
+.header {
+
+	position: fixed;
+	width: 100%;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	color: $gold-l;
+	box-shadow: 0px 10px 15px rgba(37, 37, 37, 0.07);
+	background: $white;
+	z-index: 3;
+
+	// .header__logo
+
+	&__logo {
+		font-size: 25px;
+		font-style: italic;
+		color: $gold-l;
+
+		&:hover{
+			filter: drop-shadow(0px 5px 7px $black-shadow);
+		}
+	
+		&:active{
+			color: $gold-d;
+		}
+	}
+
+	// .header__cart-total
+
+	&__cart-total {
+		text-align: center;
+		font-size: 20px;
+		text-transform: uppercase;
+	}
+
+	// .header__price
+
+	&__price {
+	}
+
+	// .header__cart
+
+	&__cart {
+	}
+}

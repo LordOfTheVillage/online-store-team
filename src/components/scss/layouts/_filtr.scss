@@ -1,0 +1,40 @@
+.filtr-checkbox{
+	width: 100%;
+	height: 210px;
+	border: 1px solid #E0BEA2;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	overflow: auto;
+
+	& >*{
+		margin-bottom: 10px;
+		&:last-child{
+			margin-bottom: 0;
+		}
+	}
+
+	&__title{
+		width: 100%;
+		height: 30px;
+		padding-bottom: 10px;
+		position: sticky;
+		font-size: 20px;
+		margin-bottom: 10px;
+		align-self: center;
+		border-bottom: 1px solid #E0BEA2;
+	}
+}
+
+//NavFiltr
+
+.filtr-module{
+	min-width: 300px;
+	display: flex;
+	flex-direction: column;
+	// justify-content: space-between;
+	& >*{
+		margin-bottom: 20px;
+	}
+}

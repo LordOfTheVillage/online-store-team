@@ -1,0 +1,21 @@
+.container {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.col-2 {
+  display: flex;
+  justify-content: space-between;
+}
+.col-2 > * {
+  flex-basis: 48%;
+}
+
+.col-3 {
+  display: flex;
+  justify-content: space-between;
+}
+.col-3 > * {
+  flex-basis: 30%;
+}
