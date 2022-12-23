@@ -1,0 +1,64 @@
+.info {
+
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	font-size: 18px;
+
+	span{
+		font-weight: bold;
+	}
+	&>*{
+		margin-bottom: 20px;
+	}
+
+	// .info__title
+
+	&__title {
+		text-align: center;
+		font-size: 30px;
+		
+	}
+
+	// .info__annotation
+
+	&__annotation {
+		line-height: normal;
+	}
+
+	// .info__category
+
+	&__category {
+	}
+
+	// .info__author
+
+	&__author {
+	}
+
+	// .info__publisher
+
+	&__publisher {
+	}
+
+	// .info__price
+
+	&__price {
+	}
+
+	.btn-primary{
+		width: 200px;
+	}
+
+	// .info__cart
+
+	&__cart {
+		margin-left: 20px;
+	}
+
+	&__row {
+		display: flex;
+		align-items: center;
+	}
+}
+

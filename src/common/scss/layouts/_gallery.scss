@@ -1,0 +1,40 @@
+
+.gallery {
+
+	display: flex;
+	height: 750px;
+	margin-right: 100px;
+	width: 2200px;
+
+	// .gallery__img
+
+	&__img {
+		height: 100%;
+		object-fit: contain;
+		width: 60%;
+		margin-left: 30px;
+	}
+
+	// .gallery__img-container
+
+	&__img-container {
+		display: flex;
+		flex-direction: column;
+		margin-right: 20px;
+		height: 100%;
+		overflow: auto;
+		width: 30%;
+		padding: 10px;
+
+		&>*{
+			height: 30%;
+			object-fit: contain;
+			cursor: pointer;
+			margin-bottom: 10%;
+
+			&:last-of-type{
+				margin-bottom: 0;
+			}
+		}
+	}
+}
