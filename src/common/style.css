@@ -211,6 +211,69 @@ li {
   align-items: center;
 }
 
+.catalog {
+  display: flex;
+  flex-wrap: wrap;
+}
+.catalog-content {
+  display: flex;
+  justify-content: space-between;
+}
+.catalog-content__second-item {
+  flex-basis: 80%;
+}
+
+.filtr-checkbox {
+  width: 100%;
+  height: 210px;
+  border: 1px solid #E0BEA2;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: auto;
+}
+.filtr-checkbox > * {
+  margin-bottom: 10px;
+}
+.filtr-checkbox > *:last-child {
+  margin-bottom: 0;
+}
+.filtr-checkbox__title {
+  width: 100%;
+  height: 30px;
+  padding-bottom: 10px;
+  position: -webkit-sticky;
+  position: sticky;
+  font-size: 20px;
+  margin-bottom: 10px;
+  align-self: center;
+  border-bottom: 1px solid #E0BEA2;
+}
+
+.filtr-module {
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.filtr-module > * {
+  margin-bottom: 20px;
+}
+
+.sort-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+.sort-list__view-btn {
+  margin-right: 10px;
+}
+.sort-list__found {
+  font-size: 20px;
+  align-self: center;
+}
 .btn {
   background: #E0BEA2;
   color: #fff;
