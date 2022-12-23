@@ -1,0 +1,31 @@
+.container{
+	max-width: 1800px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+*{
+	transition: all 0.5s;
+	color: black;
+}
+
+.col-2{
+	display: flex;
+	justify-content: space-between;
+	&>*{
+		flex-basis: 48%;
+	}
+}
+
+.col-3 {
+	display: flex;
+	justify-content: space-between;
+	&>*{
+		flex-basis: 30%;
+	}
+}
+
+.page-content{
+	padding-top: 100px;
+}
