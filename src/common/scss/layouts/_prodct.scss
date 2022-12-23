@@ -1,0 +1,15 @@
+.product {
+
+	display: flex;
+	justify-content: space-between;
+
+	&>*{
+		flex-basis: 45%;
+	}
+
+	// .product__gallery
+
+	&__gallery {
+		// width: 40%;
+	}
+}

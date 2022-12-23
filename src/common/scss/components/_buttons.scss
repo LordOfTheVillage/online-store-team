@@ -1,0 +1,40 @@
+//Button
+
+.btn{
+
+	background: $gold-l;
+	color: $white;
+
+	&:hover{
+		filter: drop-shadow(0px 5px 7px $black-shadow);
+	}
+
+	&:active{
+		background: $gold-d;
+		box-shadow: inset 0px 3px 7px $black-shadow;
+	}
+
+	&-primary{
+		padding: 16px 30px;
+		text-transform: uppercase;
+		// @include btnEffect;
+	}
+
+	&-view{
+		width: 30px;
+		height: 30px;
+	}
+
+	&-cart{
+		background: url("./assets/icons/cart-l.svg") no-repeat;
+		background-position: right;
+		width: 25px;
+		height: 25px;
+
+		&:hover{
+			background: url("./assets/icons/cart-d.svg") no-repeat;
+			background-position: right;
+		}
+	}
+}
+
