@@ -1,0 +1,43 @@
+.cart-content{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.cart{
+
+	&__nav{
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		margin-bottom: 30px;
+		font-size: 20px;
+		
+		&>*{
+			margin-left: 50px;
+			display: flex;
+			align-items: center;
+		}
+
+		&-title{
+			margin-right: 20px;
+		}
+	}
+
+	&__form{
+		margin-top: 30px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-width: 400px;
+		@include border;
+		padding: 20px 30px;
+		font-size: 20px;
+		min-height: 200px;
+		align-self: center;
+
+		button{
+			width: 100%;
+		}
+	}
+}
