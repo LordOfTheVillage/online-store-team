@@ -7,6 +7,7 @@ export interface PrimaryCheckboxProps {
 }
 
 export interface ProductCardProps {
+  id: string;
   title: string;
   img: string;
   price: number;
