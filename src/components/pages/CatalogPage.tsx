@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { FullProductProps } from 'src/common/types';
-import { ALL_PRODUCTS, SELECT_ITEMS } from '../../common/data';
+import { ALL_PRODUCTS } from '../../common/data';
 import { Catalog } from '../modules/Catalog';
 import { Filter } from '../modules/Filtr';
 import { Header } from '../modules/Header';
@@ -25,17 +25,18 @@ interface ISelectFiltersItems {
 
 interface IRangeFiltersItems {
   price?: Record<string, number>;
+  rating?: Record<string, number>;
 }
 
 export const CatalogPage: React.FC<CatalogPageProps> = () => {
-  const [sorting] = useState<string>('');
+  const [sorting, setSorting] = useState<string>('');
   const [selectFilters, setSelectFilters] = useState<ISelectFiltersItems>();
   const [rangeFilters, setRangeFilters] = useState<IRangeFiltersItems>();
 
   const authors = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'author'), [ALL_PRODUCTS]);
   const categories = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'category'), [ALL_PRODUCTS]);
-
   const prices = useMemo<Record<string, number>>(() => generateRangeByProperty(ALL_PRODUCTS, 'price'), [ALL_PRODUCTS]);
+  const rating = useMemo<Record<string, number>>(() => generateRangeByProperty(ALL_PRODUCTS, 'rating'), [ALL_PRODUCTS]);
 
   const products: FullProductProps[] = useMemo(() => {
     return ALL_PRODUCTS.filter((item) => {
@@ -75,6 +76,14 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
     setRangeFilters({ ...rangeFilters, price: prices } as IRangeFiltersItems);
   };
 
+  const handleUpdateRatingFilters = (ratings: Record<string, number>) => {
+    setRangeFilters({ ...rangeFilters, rating: ratings } as IRangeFiltersItems);
+  };
+
+  const handleUpdateSorting = (sort: string) => {
+    setSorting(sort);
+  };
+
   const sectionsArr = [
     {
       sectionsContent: <MultiSelect list={authors} updateList={handleUpdateAuthorFilters} />,
@@ -88,6 +97,10 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
       title: 'Price',
       sectionsContent: <DualSlider updateList={handleUpdatePriceFilters} min={prices.min} max={prices.max} />,
     },
+    {
+      title: 'Rating',
+      sectionsContent: <DualSlider updateList={handleUpdateRatingFilters} min={rating.min} max={rating.max} />,
+    },
   ];
 
   return (
@@ -96,7 +109,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
       <div className="container page-content catalog-content">
         <Filter sections={sectionsArr} />
         <div className="catalog-content__second-item">
-          <Sort options={SELECT_ITEMS} />
+          <Sort options={Object.keys(SORTINGS_CONFIG)} updateSorting={handleUpdateSorting} />
           <Catalog productsCards={products} />
         </div>
       </div>

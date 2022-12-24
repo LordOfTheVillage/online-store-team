@@ -19,6 +19,7 @@ export interface FullProductProps {
   category: string;
   author: string;
   price: number;
+  rating: number;
   stock: number;
   images: string[];
 }

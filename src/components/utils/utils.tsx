@@ -40,7 +40,7 @@ export const getRandomNumber = (min: number, max: number): number => {
 export const SORTINGS_CONFIG = {
   'Сначала дешевые': (left: FullProductProps, right: FullProductProps) => left.price - right.price,
   'Сначала дорогие': (left: FullProductProps, right: FullProductProps) => right.price - left.price,
-  'Сначала популярные': (left: FullProductProps, right: FullProductProps) => right.stock - left.stock,
+  'Сначала популярные': (left: FullProductProps, right: FullProductProps) => right.rating - left.rating,
 };
 
 export const SELECT_FILTERS_CONFIG: IFilters = {
@@ -53,16 +53,13 @@ export const SELECT_FILTERS_CONFIG: IFilters = {
   // title: (title: string, src: string) => {
   //   return src.toLowerCase().includes(title.trim().toLowerCase());
   // },
-  // price: (range: Record<string, string | number>, src: number) => {
-  //   return (
-  //     (range['min'] === 0 || range['min'] === '' ? true : src >= range['min']) &&
-  //     (range['max'] === 0 || range['max'] === '' ? true : src <= range['max'])
-  //   );
-  // },
 };
 
 export const RANGE_FILTERS_CONFIG = {
   price: (range: Record<string, number>, src: number) => {
+    return (range['min'] === 0 ? true : src >= range['min']) && (range['max'] === 0 ? true : src <= range['max']);
+  },
+  rating: (range: Record<string, number>, src: number) => {
     return (range['min'] === 0 ? true : src >= range['min']) && (range['max'] === 0 ? true : src <= range['max']);
   },
 };
