@@ -23,6 +23,19 @@
 	&-view{
 		width: 30px;
 		height: 30px;
+		@include border;
+
+		&:first-of-type{
+			background: url("./assets/icons/view-1.svg") no-repeat;
+			background-position: center;
+			background-size: contain;
+		}
+
+		&:last-of-type{
+			background: url("./assets/icons/view-2.svg") no-repeat;
+			background-position: center;
+			background-size: contain;
+		}
 	}
 
 	&-cart{
