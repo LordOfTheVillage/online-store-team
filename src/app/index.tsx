@@ -1,30 +1,31 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { GoodsPage } from "../pages/GoodsPage";
-import { GoodsItemPage } from "../pages/GoodPage";
-import { CartPage } from "../pages/CartPage";
-import { Layout } from "../pages/Layout";
-import { NotFoundPage } from "../pages/NotFoundPage";
+import { Pathes } from "../components/utils/pathes";
+import { Layout } from "../components/modules/Layout";
+import { CartPage } from "../components/pages/CartPage";
+import { GoodsPage } from "../components/pages/GoodsPage";
+import { NotFoundPage } from "../components/pages/NotFoundPage";
+import { ProductPage } from "../components/pages/ProductPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: Pathes.main,
     element: <Layout />,
     children: [
       {
-        path: "/goods",
+        path: Pathes.goods,
         element: <GoodsPage />
       },
       {
-        path: "/goods/:id",
-        element: <GoodsItemPage />
+        path: Pathes.goodsItem,
+        element: <ProductPage />
       },
       {
-        path: "/cart",
+        path: Pathes.cart,
         element: <CartPage />
       },
       {
-        path: "*",
+        path: Pathes.any,
         element: <NotFoundPage />,
       },
     ]

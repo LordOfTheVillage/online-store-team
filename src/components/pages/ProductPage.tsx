@@ -1,24 +1,28 @@
-import React from "react"
+import React, { useState } from "react"
+import { Navigate, useParams } from "react-router-dom"
+import { FullProductProps } from "src/common/types"
 import { PRODUCTS } from "../../common/data"
-import { Header } from "../modules/Header"
 import { ProductGallery } from "../modules/ProductGallery"
 import ProductInfo from "../modules/ProductInfo"
+import { Pathes } from "../utils/pathes"
+import { getProductById } from "../utils/utils"
 
-const ProductPage: React.FC = () => {
+export const ProductPage: React.FC = ():any => {
+	const {id} = useParams();
+	const [product] = useState<FullProductProps>(() => getProductById(id, PRODUCTS))
 
-  return (
-		<div className="catalog-page wrapper">
-			<Header/>
-			<div className="container page-content product-content">
-				<div className="product-content__way"></div>
-				<div className="product-content__product product">
-					<ProductGallery imgs={PRODUCTS.images}/>
-					<ProductInfo product={PRODUCTS}/>
+  return  (
+		<>
+		{PRODUCTS.length < +id ? <Navigate to={Pathes.goods} /> : ''}
+			<div className="catalog-page wrapper">
+				<div className="container page-content product-content">
+					<div className="product-content__way"></div>
+					<div className="product-content__product product">
+						<ProductGallery images={product.images}/>
+						<ProductInfo product={product}/>
+					</div>
 				</div>
 			</div>
-			
-		</div>
+		</>
 	)
 }
-
-export default ProductPage
