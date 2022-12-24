@@ -7,7 +7,13 @@ import { Header } from '../modules/Header';
 import { MultiSelect } from '../modules/MultiSelect';
 import { Sort } from '../modules/Sort';
 import { DualSlider } from '../simple/DualSlider';
-import { SELECT_FILTERS_CONFIG, generateListByProperty, SORTINGS_CONFIG, RANGE_FILTERS_CONFIG } from '../utils/utils';
+import {
+  SELECT_FILTERS_CONFIG,
+  generateListByProperty,
+  SORTINGS_CONFIG,
+  RANGE_FILTERS_CONFIG,
+  generateRangeByProperty,
+} from '../utils/utils';
 
 interface CatalogPageProps {}
 
@@ -25,8 +31,11 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
   const [sorting] = useState<string>('');
   const [selectFilters, setSelectFilters] = useState<ISelectFiltersItems>();
   const [rangeFilters, setRangeFilters] = useState<IRangeFiltersItems>();
-  const [authors] = useState<string[]>(generateListByProperty(ALL_PRODUCTS, 'author'));
-  const [categories] = useState<string[]>(generateListByProperty(ALL_PRODUCTS, 'category'));
+
+  const authors = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'author'), [ALL_PRODUCTS]);
+  const categories = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'category'), [ALL_PRODUCTS]);
+
+  const prices = useMemo<Record<string, number>>(() => generateRangeByProperty(ALL_PRODUCTS, 'price'), [ALL_PRODUCTS]);
 
   const products: FullProductProps[] = useMemo(() => {
     return ALL_PRODUCTS.filter((item) => {
@@ -75,7 +84,10 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
       sectionsContent: <MultiSelect list={categories} updateList={handleUpdateCategoriesFilters} />,
       title: 'Categories',
     },
-    { title: 'Price', sectionsContent: <DualSlider updateList={handleUpdatePriceFilters} min={0} max={10} /> },
+    {
+      title: 'Price',
+      sectionsContent: <DualSlider updateList={handleUpdatePriceFilters} min={prices.min} max={prices.max} />,
+    },
   ];
 
   return (
