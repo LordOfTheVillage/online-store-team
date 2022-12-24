@@ -293,6 +293,17 @@ li {
 .btn-view {
   width: 30px;
   height: 30px;
+  border: 2px solid #E0BEA2;
+}
+.btn-view:first-of-type {
+  background: url("./assets/icons/view-1.svg") no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.btn-view:last-of-type {
+  background: url("./assets/icons/view-2.svg") no-repeat;
+  background-position: center;
+  background-size: contain;
 }
 .btn-cart {
   background: url("./assets/icons/cart-l.svg") no-repeat;
@@ -467,7 +478,6 @@ li {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 30px 0;
 }
 
 .slider {
