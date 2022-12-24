@@ -1,3 +1,16 @@
+body{
+	min-height: 100vh;
+	width: 100%;
+}
+
+#root{
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 .container{
 	max-width: 1800px;
 	width: 100%;
@@ -27,5 +40,5 @@
 }
 
 .page-content{
-	padding-top: 100px;
+	padding: 100px 0 50px;
 }
