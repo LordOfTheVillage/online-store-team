@@ -28,6 +28,6 @@ export interface FullProductProps {
 export interface IFilters {
   author?: (author: string[], sec: string) => boolean;
   category?: (category: string[], sec: string) => boolean;
+  // title?: (title: string, src: string) => boolean;
   // price?: (range: { [x: string]: number | string }, src: number) => boolean;
-  // title: (title: string, src: string) => boolean;
 }

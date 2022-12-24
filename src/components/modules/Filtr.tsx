@@ -5,6 +5,7 @@ import { FilterSection } from './FiltrSection';
 
 interface FilterProps {
   sections: Array<{ sectionsContent: JSX.Element[] | JSX.Element; title: string }>;
+  updateSearch: (search: string) => void;
 }
 
 export const Filter: React.FC<FilterProps> = (props) => {
@@ -15,7 +16,7 @@ export const Filter: React.FC<FilterProps> = (props) => {
           {item.sectionsContent}
         </FilterSection>
       ))}
-      <PrimaryInput title="Search" />
+      <PrimaryInput onChange={props.updateSearch} title="Search" />
       <div className="col-2">
         <PrimaryButton title="Clear" />
         <PrimaryButton title="Copy" />

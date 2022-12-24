@@ -13,6 +13,7 @@ import {
   SORTINGS_CONFIG,
   RANGE_FILTERS_CONFIG,
   generateRangeByProperty,
+  SEARCH_FILTERS_CONFIG,
 } from '../utils/utils';
 
 interface CatalogPageProps {}
@@ -20,7 +21,6 @@ interface CatalogPageProps {}
 interface ISelectFiltersItems {
   author?: string[];
   category?: string[];
-  // title?: string;
 }
 
 interface IRangeFiltersItems {
@@ -28,10 +28,15 @@ interface IRangeFiltersItems {
   rating?: Record<string, number>;
 }
 
+interface ISearchFiltersItems {
+  title?: string;
+}
+
 export const CatalogPage: React.FC<CatalogPageProps> = () => {
   const [sorting, setSorting] = useState<string>('');
   const [selectFilters, setSelectFilters] = useState<ISelectFiltersItems>();
   const [rangeFilters, setRangeFilters] = useState<IRangeFiltersItems>();
+  const [searchFilters, setSearchFilters] = useState<ISearchFiltersItems>();
 
   const authors = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'author'), [ALL_PRODUCTS]);
   const categories = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'category'), [ALL_PRODUCTS]);
@@ -60,9 +65,19 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
         )
           return false;
       }
+      for (let key in searchFilters) {
+        if (
+          searchFilters[key as keyof typeof searchFilters].length !== 0 &&
+          !SEARCH_FILTERS_CONFIG[key as keyof typeof SEARCH_FILTERS_CONFIG](
+            searchFilters[key as keyof typeof searchFilters],
+            item[key as keyof typeof searchFilters]
+          )
+        )
+          return false;
+      }
       return true;
     }).sort(SORTINGS_CONFIG[sorting as keyof typeof SORTINGS_CONFIG]);
-  }, [ALL_PRODUCTS, selectFilters, rangeFilters, sorting]);
+  }, [ALL_PRODUCTS, selectFilters, rangeFilters, searchFilters, sorting]);
 
   const handleUpdateAuthorFilters = (authors: string[]) => {
     setSelectFilters({ ...selectFilters, author: authors } as ISelectFiltersItems);
@@ -80,18 +95,22 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
     setRangeFilters({ ...rangeFilters, rating: ratings } as IRangeFiltersItems);
   };
 
+  const handleUpdateSearchFilters = (search: string) => {
+    setSearchFilters({ ...searchFilters, title: search } as ISearchFiltersItems);
+  };
+
   const handleUpdateSorting = (sort: string) => {
     setSorting(sort);
   };
 
   const sectionsArr = [
     {
-      sectionsContent: <MultiSelect list={authors} updateList={handleUpdateAuthorFilters} />,
       title: 'Author',
+      sectionsContent: <MultiSelect list={authors} updateList={handleUpdateAuthorFilters} />,
     },
     {
-      sectionsContent: <MultiSelect list={categories} updateList={handleUpdateCategoriesFilters} />,
       title: 'Categories',
+      sectionsContent: <MultiSelect list={categories} updateList={handleUpdateCategoriesFilters} />,
     },
     {
       title: 'Price',
@@ -107,7 +126,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
     <div className="catalog-page wrapper">
       <Header />
       <div className="container page-content catalog-content">
-        <Filter sections={sectionsArr} />
+        <Filter sections={sectionsArr} updateSearch={handleUpdateSearchFilters} />
         <div className="catalog-content__second-item">
           <Sort options={Object.keys(SORTINGS_CONFIG)} updateSorting={handleUpdateSorting} />
           <Catalog productsCards={products} />
