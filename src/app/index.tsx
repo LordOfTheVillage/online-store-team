@@ -1,11 +1,11 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Pathes } from "../components/utils/pathes";
-import { Layout } from "../components/modules/Layout";
-import { CartPage } from "../components/pages/CartPage";
-import { GoodsPage } from "../components/pages/GoodsPage";
-import { NotFoundPage } from "../components/pages/NotFoundPage";
-import { ProductPage } from "../components/pages/ProductPage";
+import React from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Pathes } from '../components/utils/pathes';
+import { Layout } from '../components/modules/Layout';
+import { CartPage } from '../components/pages/CartPage';
+import { NotFoundPage } from '../components/pages/NotFoundPage';
+import { ProductPage } from '../components/pages/ProductPage';
+import { CatalogPage } from '../components/pages/CatalogPage';
 
 const router = createBrowserRouter([
   {
@@ -14,24 +14,24 @@ const router = createBrowserRouter([
     children: [
       {
         path: Pathes.goods,
-        element: <GoodsPage />
+        element: <CatalogPage />,
       },
       {
         path: Pathes.goodsItem,
-        element: <ProductPage />
+        element: <ProductPage />,
       },
       {
         path: Pathes.cart,
-        element: <CartPage />
+        element: <CartPage />,
       },
       {
         path: Pathes.any,
         element: <NotFoundPage />,
       },
-    ]
+    ],
   },
-])
+]);
 
 export default function App() {
-  return <RouterProvider router={router} />
+  return <RouterProvider router={router} />;
 }

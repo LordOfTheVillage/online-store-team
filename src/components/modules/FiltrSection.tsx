@@ -1,18 +1,17 @@
-import React, { ReactNode } from "react"
+import React, { ReactNode } from 'react';
 // import { PrimaryCheckboxProps } from "src/common/types"
 // import { PrimaryCheckbox } from "../simple/PrimaryCheckbox"
 
-interface FiltrSectionProps{
-	title: string
-	children: ReactNode
+interface FilterSectionProps {
+  title: string;
+  children: ReactNode;
 }
 
-export const FiltrSection: React.FC<FiltrSectionProps> = ({children, ...props}) => {
-
+export const FilterSection: React.FC<FilterSectionProps> = ({ children, ...props }) => {
   return (
-		<div className="filtr-checkbox">
-			<div className="filtr-checkbox__title">{props.title}</div>
-			{children}
-		</div>
-	)
-}
+    <div className="filtr-checkbox">
+      <div className="filtr-checkbox__title">{props.title}</div>
+      {children}
+    </div>
+  );
+};
