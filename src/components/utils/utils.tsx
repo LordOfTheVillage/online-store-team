@@ -1,4 +1,4 @@
-import { FullProductProps, IFilters } from 'src/common/types';
+import { FullProductProps } from 'src/common/types';
 
 export const getProductById = (id: string, products: FullProductProps[]): FullProductProps => {
   for (const product of products) {
@@ -36,50 +36,3 @@ export const getRandomString = (): string => Math.random().toString(36).substrin
 export const getRandomNumber = (min: number, max: number): number => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
-
-export const SORTINGS_CONFIG = {
-  'Сначала дешевые': (left: FullProductProps, right: FullProductProps) => left.price - right.price,
-  'Сначала дорогие': (left: FullProductProps, right: FullProductProps) => right.price - left.price,
-  'Сначала популярные': (left: FullProductProps, right: FullProductProps) => right.rating - left.rating,
-  'Сначала непопулярные': (left: FullProductProps, right: FullProductProps) => left.rating - right.rating,
-};
-
-export const SELECT_FILTERS_CONFIG: IFilters = {
-  author: (author: string[], sec: string) => {
-    return author.includes(sec);
-  },
-  category: (category: string[], sec: string) => {
-    return category.includes(sec);
-  },
-  // title: (title: string, src: string) => {
-  //   return src.toLowerCase().includes(title.trim().toLowerCase());
-  // },
-};
-
-export const SEARCH_FILTERS_CONFIG = {
-  title: (title: string, src: string) => {
-    return src.toLowerCase().includes(title.trim().toLowerCase());
-  },
-};
-
-export const RANGE_FILTERS_CONFIG = {
-  price: (range: Record<string, number>, src: number) => {
-    return (range['min'] === 0 ? true : src >= range['min']) && (range['max'] === 0 ? true : src <= range['max']);
-  },
-  rating: (range: Record<string, number>, src: number) => {
-    return (range['min'] === 0 ? true : src >= range['min']) && (range['max'] === 0 ? true : src <= range['max']);
-  },
-};
-
-// export const FILTERS_CONFIG = {
-//   include: (list: string[], filed: string) => list.includes(filed),
-//   range: (range: Record<string, number>, src: number) => {
-//     return (range['min'] === 0 ? true : src >= range['min']) && (range['max'] === 0 ? true : src <= range['max']);
-//   },
-// };
-
-// export const FILTERS = {
-//   includes: (list: string[], field: string) => (o: FullProductProps) => list.includes(o[field as keyof typeof o]),
-//   range: (min: number, max: number, field: string) => (o: FullProductProps) => o[field] >= min && o[field] <= max,
-//   search: (search, field) => (o: FullProductProps) => search.toLowerCase().contains(o[field].toLowerCase()),
-// };
