@@ -1,4 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { IFilters } from 'src/common/types';
 import { ALL_PRODUCTS } from '../../common/data';
 import { Catalog } from '../modules/Catalog';
 import { Filter } from '../modules/Filtr';
@@ -12,22 +14,30 @@ import { generateListByProperty, generateRangeByProperty } from '../utils/utils'
 
 interface CatalogPageProps {}
 
-type FilterValue = string & string[] & Record<string, number>;
-
-interface IFilters {
-  title?: FilterValue;
-  price?: FilterValue;
-  author?: FilterValue;
-}
-
 export const CatalogPage: React.FC<CatalogPageProps> = () => {
+  const [searchParams, setSearchParams] = useSearchParams({});
   const [sort, setSort] = useState<string>('');
-  const [filters, setFilters] = useState<IFilters>();
+  const [filters, setFilters] = useState<IFilters>({});
 
   const authors = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'author'), [ALL_PRODUCTS]);
   const categories = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'category'), [ALL_PRODUCTS]);
   const prices = useMemo<Record<string, number>>(() => generateRangeByProperty(ALL_PRODUCTS, 'price'), [ALL_PRODUCTS]);
   const rating = useMemo<Record<string, number>>(() => generateRangeByProperty(ALL_PRODUCTS, 'rating'), [ALL_PRODUCTS]);
+
+  useEffect(() => {
+    searchParams.forEach((value: string, key: string) => {
+      if (key === 'sort') setSort(value);
+      else {
+        if (!value.includes('↕')) setFilters({ ...filters, [key]: value } as IFilters);
+        else {
+          const values = value.split('↕');
+
+          if (isNaN(parseInt(values[0]))) setFilters({ ...filters, [key]: values } as IFilters);
+          else setFilters({ ...filters, [key]: { min: values[0], max: values[1] } } as IFilters);
+        }
+      }
+    });
+  }, []);
 
   const products = useMemo(() => {
     return ALL_PRODUCTS.filter((item) => {
@@ -41,6 +51,25 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
       return true;
     }).sort(SORTS_CONFIG[sort as keyof typeof SORTS_CONFIG]);
   }, [filters, sort, ALL_PRODUCTS]);
+
+  useEffect(() => {
+    let params = {};
+    if (Object.keys(filters).length > 0) {
+      Object.keys(filters).forEach((key) => {
+        const value = filters[key as keyof typeof filters];
+        if (Array.isArray(value) && value.length) {
+          params = { ...params, [key]: value.reduce((a: string, b: string) => a + '↕' + b) };
+        } else if (typeof value === 'string') {
+          params = { ...params, [key]: value };
+        } else {
+          const values = Object.values(value);
+          if (values.length) params = { ...params, [key]: values.reduce((a: number, b: number) => a + '↕' + b) };
+        }
+      });
+      if (sort) params = { ...params, sort: sort };
+    }
+    setSearchParams(params);
+  }, [filters, sort]);
 
   const handleUpdateAuthorFilters = (authors: string[]) => {
     setFilters({ ...filters, author: authors } as IFilters);

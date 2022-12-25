@@ -8,13 +8,17 @@ interface PrimarySelectProps {
 export const PrimarySelect: React.FC<PrimarySelectProps> = ({ onSelect, options }) => {
   const handleSelect = (e: ChangeEvent) => {
     const target = e.target as HTMLSelectElement;
-    onSelect(target.value);
+    if (target.value === 'default') {
+      onSelect('');
+    } else {
+      onSelect(target.value);
+    }
   };
 
   return (
     <div className="select-primary">
       <select onChange={handleSelect}>
-        <option value={'Без сортировки'}>Без сортировки</option>
+        <option value={'default'}>Без сортировки</option>
         {options.map((item, index) => (
           <option key={index} value={item}>
             {item}

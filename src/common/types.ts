@@ -25,9 +25,10 @@ export interface FullProductProps {
   images: string[];
 }
 
+type FilterValue = string & string[] & Record<string, number>;
+
 export interface IFilters {
-  author?: (author: string[], sec: string) => boolean;
-  category?: (category: string[], sec: string) => boolean;
-  // title?: (title: string, src: string) => boolean;
-  // price?: (range: { [x: string]: number | string }, src: number) => boolean;
+  title?: FilterValue;
+  price?: FilterValue;
+  author?: FilterValue;
 }
