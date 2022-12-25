@@ -7,7 +7,7 @@ import { MultiSelect } from '../modules/MultiSelect';
 import { Sort } from '../modules/Sort';
 import { DualSlider } from '../simple/DualSlider';
 import { FILTERS_CONFIG } from '../utils/filters';
-import { SORTINGS_CONFIG } from '../utils/sorts';
+import { SORTS_CONFIG } from '../utils/sorts';
 import { generateListByProperty, generateRangeByProperty } from '../utils/utils';
 
 interface CatalogPageProps {}
@@ -21,7 +21,7 @@ interface IFilters {
 }
 
 export const CatalogPage: React.FC<CatalogPageProps> = () => {
-  const [sorting, setSorting] = useState<string>('');
+  const [sort, setSort] = useState<string>('');
   const [filters, setFilters] = useState<IFilters>();
 
   const authors = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'author'), [ALL_PRODUCTS]);
@@ -39,8 +39,8 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
           return false;
       }
       return true;
-    }).sort(SORTINGS_CONFIG[sorting as keyof typeof SORTINGS_CONFIG]);
-  }, [filters, sorting, ALL_PRODUCTS]);
+    }).sort(SORTS_CONFIG[sort as keyof typeof SORTS_CONFIG]);
+  }, [filters, sort, ALL_PRODUCTS]);
 
   const handleUpdateAuthorFilters = (authors: string[]) => {
     setFilters({ ...filters, author: authors } as IFilters);
@@ -63,7 +63,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
   };
 
   const handleUpdateSorting = (sort: string) => {
-    setSorting(sort);
+    setSort(sort);
   };
 
   const sectionsArr = [
@@ -91,7 +91,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
       <div className="container page-content catalog-content">
         <Filter sections={sectionsArr} updateSearch={handleUpdateSearchFilters} />
         <div className="catalog-content__second-item">
-          <Sort options={Object.keys(SORTINGS_CONFIG)} updateSorting={handleUpdateSorting} />
+          <Sort options={Object.keys(SORTS_CONFIG)} updateSorting={handleUpdateSorting} />
           <Catalog productsCards={products} />
         </div>
       </div>
