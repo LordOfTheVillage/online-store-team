@@ -1,0 +1,80 @@
+.cart {
+
+	// .cart__row
+
+	&__row {
+		width: 100%;
+		@include border;
+		padding: 20px 50px;
+		margin-bottom: 20px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 300px;
+		font-size: 20px;
+	}
+
+	// .cart__product
+
+	&__product {
+		flex-basis: 70%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	// .cart__img
+
+	&__img {
+		width: 150px;
+		height: 250px;
+		object-fit: contain;
+	}
+
+	// .cart__description
+
+	&__description {
+		display: flex;
+		flex-direction: column;
+		&>*{
+			margin-bottom: 10px;
+		}
+	}
+
+	// .cart__title
+
+	&__title {
+	}
+
+	// .cart__category
+
+	&__category {
+	}
+
+	// .cart__author
+
+	&__author {
+	}
+
+	// .cart__price
+
+	&__price {
+	}
+
+	// .cart__annotation
+
+	&__annotation {
+		font-size: 16px;
+		max-width: 500px;
+		max-height: 250px;
+		height: 100%;
+		overflow: auto;
+	}
+
+	// .cart__total-price
+
+	&__total-price {
+	}
+}
+.btn-basket {
+}
