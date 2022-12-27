@@ -1,0 +1,9 @@
+.order-form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	&>*{
+		margin-bottom: 20px;
+	}
+}
