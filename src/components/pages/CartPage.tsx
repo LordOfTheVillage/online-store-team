@@ -10,14 +10,10 @@ import { OrderForm } from '../modules/OrderForm'
 
 export const CartPage: FC = () => {
 
-	const [modalClasses, setModalClasses] = useState({classModal: "modal", classContent: "modal-content"});
+	const [isOpenModal, setIsOpenModal] = useState(false);
 
-	const changeModalClasses = () => {
-		setModalClasses({classModal: "modal modal-active", classContent: "modal-content modal-content-active"})
-	}
-
-	console.log(modalClasses)
-
+	const openModal = () => setIsOpenModal(true);
+	const closeModal = () => setIsOpenModal(false);
 
   return (<div className="catalog-page wrapper">
 	<Header/>
@@ -26,8 +22,8 @@ export const CartPage: FC = () => {
 		<div className="cart__products">
 			{PRODUCTS.map(item => <CartRow productInfo={item}/>)}
 		</div>
-		<CartForm amount={10} totalPrice={1000} changeModalClasses={changeModalClasses}/>
+		<CartForm amount={10} totalPrice={1000} onOpenModal={openModal}/>
 	</div>
-	<ModalWindow classes = {modalClasses}><OrderForm/></ModalWindow>
+	<ModalWindow onClose = {closeModal} isOpenModal = {isOpenModal}><OrderForm onClose = {closeModal}/></ModalWindow>
 </div>)
 }

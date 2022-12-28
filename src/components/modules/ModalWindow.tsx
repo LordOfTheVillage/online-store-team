@@ -1,23 +1,20 @@
-import React, { ReactNode, useState } from "react"
+import React, { ReactNode} from "react"
 
 interface ModalWindowProps{
 	children: ReactNode
-	classes: {
-		classContent: string
-		classModal: string
-	}
+	onClose: () => void
+	isOpenModal: boolean
 }
 
-export const ModalWindow: React.FC<ModalWindowProps> = ({children, classes}) => {
+export const ModalWindow: React.FC<ModalWindowProps> = ({children, onClose, isOpenModal}) => {
 
-	const [modalClasses, setModalClasses] = useState(classes);
-	
-	// console.log(classes)
-	console.log(modalClasses)
+	const classes = isOpenModal 
+	? {modalClass: "modal modal-active", modalContentClass: "modal-content modal-content-active"}
+	: {modalClass: "modal", modalContentClass: "modal-content"};
 
-  return  <div className={classes.classModal}>
-						<div className="modal-body" onClick = {() => setModalClasses({classModal: "modal", classContent: "modal-content"})}>
-							<div className={classes.classContent} onClick={e => e.stopPropagation()}>
+  return  <div className={classes.modalClass}>
+						<div className="modal-body" onClick = {onClose}>
+							<div className={classes.modalContentClass} onClick={e => e.stopPropagation()}>
 								{children}
 							</div>
 						</div>
