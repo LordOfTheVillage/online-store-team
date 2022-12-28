@@ -12,7 +12,9 @@
 				'layouts/filtr',
 				'layouts/sort',
 				'layouts/footer',
-				'layouts/cart';
+				'layouts/cart',
+				'layouts/modal',
+				'layouts/order_form';
 
 @import 'components/buttons',
 				'components/checkbox',
@@ -21,4 +23,5 @@
 				'components/counter',
 				'components/product_card',
 				'components/dual_slider',
-				'components/cart_row';
+				'components/cart_row',
+				'components/bank_card';

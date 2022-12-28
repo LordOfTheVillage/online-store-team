@@ -342,6 +342,72 @@ body {
   width: 100%;
 }
 
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.675);
+  z-index: 15;
+}
+
+.modal-body {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background: #fff;
+  transform: translate(0, -100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 30px;
+  width: 40%;
+  min-height: 400px;
+}
+
+.modal-close {
+  padding: 10px;
+  background: #E0BEA2;
+}
+
+.modal-content-active {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+
+.modal-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.order-form > * {
+  margin-bottom: 20px;
+}
+.order-form button {
+  width: 100%;
+}
+
 .btn {
   background: #E0BEA2;
   color: #fff;
@@ -654,4 +720,31 @@ body {
   max-height: 250px;
   height: 100%;
   overflow: auto;
+}
+.card {
+  width: 400px;
+  height: 150px;
+  padding: 30px;
+  background: -webkit-linear-gradient(80deg, #e0bea2, #fff, #e0bea2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card__row:first-of-type {
+  display: flex;
+}
+.card__row:last-of-type {
+  display: flex;
+  justify-content: space-between;
+}
+.card__row:last-of-type > * {
+  flex-basis: 40%;
+}
+.card__logo {
+  margin-right: 5px;
+  width: 50px;
+  height: 100%;
+  background: url("./assets/icons/mastercard.png") no-repeat;
+  background-position: center;
+  background-size: contain;
 }
