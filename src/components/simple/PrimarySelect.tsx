@@ -1,11 +1,12 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 
 interface PrimarySelectProps {
   options: string[];
+  selectedItem?: string;
   onSelect: (sort: string) => void;
 }
 
-export const PrimarySelect: React.FC<PrimarySelectProps> = ({ onSelect, options }) => {
+export const PrimarySelect: React.FC<PrimarySelectProps> = ({ onSelect, selectedItem, options }) => {
   const handleSelect = (e: ChangeEvent) => {
     const target = e.target as HTMLSelectElement;
     if (target.value === 'default') {
@@ -14,6 +15,11 @@ export const PrimarySelect: React.FC<PrimarySelectProps> = ({ onSelect, options 
       onSelect(target.value);
     }
   };
+
+  useEffect(() => {
+    const select = document.querySelector('.select-primary').children[0] as HTMLSelectElement;
+    select.value = selectedItem ? selectedItem : 'default';
+  }, [selectedItem]);
 
   return (
     <div className="select-primary">

@@ -3,6 +3,7 @@ import { ChangeEvent } from 'react';
 export interface PrimaryCheckboxProps {
   id: number;
   title: string;
+  checked?: boolean;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -25,10 +26,12 @@ export interface FullProductProps {
   images: string[];
 }
 
-type FilterValue = string & string[] & Record<string, number>;
+export type FilterValue = string & string[] & Record<string, number>;
 
 export interface IFilters {
   title?: FilterValue;
   price?: FilterValue;
   author?: FilterValue;
+  category?: FilterValue;
+  rating?: FilterValue;
 }

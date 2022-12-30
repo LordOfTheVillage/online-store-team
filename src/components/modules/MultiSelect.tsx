@@ -1,14 +1,20 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { FC } from 'react';
 import { PrimaryCheckbox } from '../simple/PrimaryCheckbox';
 
 interface MultiSelectProps {
   list: string[];
+  startSettings: string[] | undefined;
   updateList: (name: string[]) => void;
 }
 
-export const MultiSelect: FC<MultiSelectProps> = ({ list, updateList }) => {
-  const [checkedList, setCheckedList] = useState([]);
+export const MultiSelect: FC<MultiSelectProps> = ({ list, startSettings, updateList }) => {
+  const [checkedList, setCheckedList] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (startSettings !== undefined) setCheckedList(startSettings);
+    else setCheckedList([]);
+  }, [startSettings]);
 
   const handleSelectItems = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
@@ -27,7 +33,13 @@ export const MultiSelect: FC<MultiSelectProps> = ({ list, updateList }) => {
   return (
     <div>
       {list.map((e, i) => (
-        <PrimaryCheckbox key={i} onChange={handleSelectItems} title={e} id={i} />
+        <PrimaryCheckbox
+          key={i}
+          checked={startSettings === undefined ? false : startSettings.includes(e)}
+          onChange={handleSelectItems}
+          title={e}
+          id={i}
+        />
       ))}
     </div>
   );

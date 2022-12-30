@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Pathes } from '../components/utils/pathes';
+import { AppRoutes } from '../components/utils/pathes';
 import { Layout } from '../components/modules/Layout';
 import { CartPage } from '../components/pages/CartPage';
 import { NotFoundPage } from '../components/pages/NotFoundPage';
@@ -9,23 +9,23 @@ import { CatalogPage } from '../components/pages/CatalogPage';
 
 const router = createBrowserRouter([
   {
-    path: Pathes.main,
+    path: AppRoutes.main,
     element: <Layout />,
     children: [
       {
-        path: Pathes.goods,
+        index: true,
         element: <CatalogPage />,
       },
       {
-        path: Pathes.goodsItem,
+        path: AppRoutes.goodsItem,
         element: <ProductPage />,
       },
       {
-        path: Pathes.cart,
+        path: AppRoutes.cart,
         element: <CartPage />,
       },
       {
-        path: Pathes.any,
+        path: AppRoutes.any,
         element: <NotFoundPage />,
       },
     ],

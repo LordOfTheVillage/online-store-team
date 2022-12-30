@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PrimaryCheckboxProps } from 'src/common/types';
 import { getRandomString } from '../utils/utils';
 
 export const PrimaryCheckbox: React.FC<PrimaryCheckboxProps> = (props) => {
   const [id] = useState<string>(getRandomString());
+
+  useEffect(() => {
+    const input = document.getElementById(`${props.id + id}`) as HTMLInputElement;
+    input.checked = props.checked;
+  }, [id, props.checked]);
+
   return (
     <div className="checkbox-primary">
       <input

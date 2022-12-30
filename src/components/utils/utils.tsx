@@ -1,9 +1,7 @@
 import { FullProductProps } from 'src/common/types';
 
 export const getProductById = (id: string, products: FullProductProps[]): FullProductProps => {
-  for (const product of products) {
-    if (product.id === id) return product;
-  }
+  return products.find((e) => e.id === id);
 };
 
 export const generateListByProperty = (array: FullProductProps[], property: string) => {
