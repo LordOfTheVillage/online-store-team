@@ -49,5 +49,16 @@
 			background-position: right;
 		}
 	}
+
+	&-basket{
+		background: url("./assets/icons/basket.svg") no-repeat;
+		background-position: center;
+		width: 25px;
+		height: 25px;
+
+		&:hover{
+			background-position: right;
+		}
+	}
 }
 
