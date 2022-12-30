@@ -1,21 +1,45 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from 'react';
 
 interface DualSliderProps {
-	min: number
-	max: number
+  min: number;
+  max: number;
+  startSettings?: Record<string, number> | undefined;
+  updateList: (list: Record<string, number>) => void;
 }
 
-export const DualSlider: React.FC<DualSliderProps> = ({ min, max }) => {
+export const DualSlider: React.FC<DualSliderProps> = ({ updateList, startSettings, min, max }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
-	
+
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef(null);
 
   const getPercent = (value: number) => Math.round(((value - min) / (max - min)) * 100);
 
-	useEffect(() => {
+  useEffect(() => {
+    if (startSettings) {
+      setMinVal(startSettings.min);
+      setMaxVal(startSettings.max);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (
+      startSettings === undefined ||
+      (startSettings.min === minValRef.current && startSettings.max === minValRef.current)
+    ) {
+      setMinVal(min);
+      setMaxVal(max);
+    }
+  }, [startSettings]);
+
+  useEffect(() => {
+    const list: Record<string, number> = { min: minVal, max: maxVal };
+    updateList(list);
+  }, [minVal, maxVal]);
+
+  useEffect(() => {
     const minPercent = getPercent(minVal);
     const maxPercent = getPercent(maxValRef.current);
 
@@ -70,4 +94,3 @@ export const DualSlider: React.FC<DualSliderProps> = ({ min, max }) => {
     </div>
   );
 };
-

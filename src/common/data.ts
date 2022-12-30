@@ -11,6 +11,7 @@ export const PRODUCTS: FullProductProps[] = [
     category: 'Fantasy',
     author: 'N. K. Jemisin',
     price: 9.99,
+    rating: 100,
     stock: 100,
     images: [
       'https://s3-goods.ozstatic.by/2000/945/24/101/101024945_0.jpg',
@@ -27,6 +28,7 @@ export const PRODUCTS: FullProductProps[] = [
     category: 'Fantasy',
     author: 'Patrick Rothfuss',
     price: 9.99,
+    rating: 100,
     stock: 20,
     images: ['./assets/products_img/2/1', './assets/products_img/2/2'],
   },
@@ -179,72 +181,76 @@ export const PRODUCTS: FullProductProps[] = [
 // 	]
 // },
 
-	export const ALL_PRODUCTS = [
-		{
-			id: '1',
-			title: "The Fifth Season",
-			annotation: "At the end of the world, a woman must hide her secret This is the way the world ends. . .for the last time. It starts with the great red rift across the heart of the world's sole continent, spewing ash that blots out the sun. It starts with death, with a murdered son and a missing daughter. It starts with betrayal, and long dormant wounds rising up to fester. This is the Stillness, a land long familiar with catastrophe, where the power of the earth is wielded as a weapon. And where there is no mercy. Read the first book in the critically acclaimed, three-time Hugo award-winning trilogy by NYT bestselling author N. K. Jemisin.",
-			category: "Fantasy",
-			author: "N. K. Jemisin",
-	
-			price: 9.99,
-			// stock: 100,
-			images: [
-				'https://s3-goods.ozstatic.by/2000/945/24/101/101024945_0.jpg',
-				'https://s3-page.ozstatic.by/128/945/24/101/101024945_0.jpg',
-				'https://s3-page.ozstatic.by/1000/945/24/101/101024945_1.jpg',
-				'https://s3-page.ozstatic.by/1000/945/24/101/101024945_2.jpg'
-			]
-		},
-		{
-			id: '1',
-			title: "The Fifth Season",
-			annotation: "At the end of the world, a woman must hide her secret This is the way the world ends. . .for the last time. It starts with the great red rift across the heart of the world's sole continent, spewing ash that blots out the sun. It starts with death, with a murdered son and a missing daughter. It starts with betrayal, and long dormant wounds rising up to fester. This is the Stillness, a land long familiar with catastrophe, where the power of the earth is wielded as a weapon. And where there is no mercy. Read the first book in the critically acclaimed, three-time Hugo award-winning trilogy by NYT bestselling author N. K. Jemisin.",
-			category: "Fantasy",
-			author: "N. K. Jemisin",
-	
-			price: 9.99,
-			// stock: 100,
-			images: [
-				'https://s3-goods.ozstatic.by/2000/945/24/101/101024945_0.jpg',
-				'https://s3-page.ozstatic.by/128/945/24/101/101024945_0.jpg',
-				'https://s3-page.ozstatic.by/1000/945/24/101/101024945_1.jpg',
-				'https://s3-page.ozstatic.by/1000/945/24/101/101024945_2.jpg'
-			]
-		},
-		{
-			id: '1',
-			title: "The Fifth Season",
-			annotation: "At the end of the world, a woman must hide her secret This is the way the world ends. . .for the last time. It starts with the great red rift across the heart of the world's sole continent, spewing ash that blots out the sun. It starts with death, with a murdered son and a missing daughter. It starts with betrayal, and long dormant wounds rising up to fester. This is the Stillness, a land long familiar with catastrophe, where the power of the earth is wielded as a weapon. And where there is no mercy. Read the first book in the critically acclaimed, three-time Hugo award-winning trilogy by NYT bestselling author N. K. Jemisin.",
-			category: "Fantasy",
-			author: "N. K. Jemisin",
-	
-			price: 9.99,
-			// stock: 100,
-			images: [
-				'https://s3-goods.ozstatic.by/2000/945/24/101/101024945_0.jpg',
-				'https://s3-page.ozstatic.by/128/945/24/101/101024945_0.jpg',
-				'https://s3-page.ozstatic.by/1000/945/24/101/101024945_1.jpg',
-				'https://s3-page.ozstatic.by/1000/945/24/101/101024945_2.jpg'
-			]
-		},
-		{
-			id: '1',
-			title: "The Fifth Season",
-			annotation: "At the end of the world, a woman must hide her secret This is the way the world ends. . .for the last time. It starts with the great red rift across the heart of the world's sole continent, spewing ash that blots out the sun. It starts with death, with a murdered son and a missing daughter. It starts with betrayal, and long dormant wounds rising up to fester. This is the Stillness, a land long familiar with catastrophe, where the power of the earth is wielded as a weapon. And where there is no mercy. Read the first book in the critically acclaimed, three-time Hugo award-winning trilogy by NYT bestselling author N. K. Jemisin.",
-			category: "Fantasy",
-			author: "N. K. Jemisin",
-	
-			price: 9.99,
-			// stock: 100,
-			images: [
-				'https://s3-goods.ozstatic.by/2000/945/24/101/101024945_0.jpg',
-				'https://s3-page.ozstatic.by/128/945/24/101/101024945_0.jpg',
-				'https://s3-page.ozstatic.by/1000/945/24/101/101024945_1.jpg',
-				'https://s3-page.ozstatic.by/1000/945/24/101/101024945_2.jpg'
-			]
-		}
-	]
+export const ALL_PRODUCTS = [
+  {
+    id: '1',
+    title: 'Fantasy - N. K. Jemisin',
+    annotation:
+      "At the end of the world, a woman must hide her secret This is the way the world ends. . .for the last time. It starts with the great red rift across the heart of the world's sole continent, spewing ash that blots out the sun. It starts with death, with a murdered son and a missing daughter. It starts with betrayal, and long dormant wounds rising up to fester. This is the Stillness, a land long familiar with catastrophe, where the power of the earth is wielded as a weapon. And where there is no mercy. Read the first book in the critically acclaimed, three-time Hugo award-winning trilogy by NYT bestselling author N. K. Jemisin.",
+    category: 'Fantasy',
+    author: 'N. K. Jemisin',
+    price: 5.99,
+    rating: 76,
+    stock: 10,
+    images: [
+      'https://s3-goods.ozstatic.by/2000/945/24/101/101024945_0.jpg',
+      'https://s3-page.ozstatic.by/128/945/24/101/101024945_0.jpg',
+      'https://s3-page.ozstatic.by/1000/945/24/101/101024945_1.jpg',
+      'https://s3-page.ozstatic.by/1000/945/24/101/101024945_2.jpg',
+    ],
+  },
+  {
+    id: '2',
+    title: 'Fantasy - N. K. Jemisin',
+    annotation:
+      "At the end of the world, a woman must hide her secret This is the way the world ends. . .for the last time. It starts with the great red rift across the heart of the world's sole continent, spewing ash that blots out the sun. It starts with death, with a murdered son and a missing daughter. It starts with betrayal, and long dormant wounds rising up to fester. This is the Stillness, a land long familiar with catastrophe, where the power of the earth is wielded as a weapon. And where there is no mercy. Read the first book in the critically acclaimed, three-time Hugo award-winning trilogy by NYT bestselling author N. K. Jemisin.",
+    category: 'Fantasy',
+    author: 'N. K. Jemisin',
+    price: 19.99,
+    rating: 90,
+    stock: 100,
+    images: [
+      'https://s3-goods.ozstatic.by/2000/945/24/101/101024945_0.jpg',
+      'https://s3-page.ozstatic.by/128/945/24/101/101024945_0.jpg',
+      'https://s3-page.ozstatic.by/1000/945/24/101/101024945_1.jpg',
+      'https://s3-page.ozstatic.by/1000/945/24/101/101024945_2.jpg',
+    ],
+  },
+  {
+    id: '3',
+    title: 'Novel - Dreiser',
+    annotation:
+      "At the end of the world, a woman must hide her secret This is the way the world ends. . .for the last time. It starts with the great red rift across the heart of the world's sole continent, spewing ash that blots out the sun. It starts with death, with a murdered son and a missing daughter. It starts with betrayal, and long dormant wounds rising up to fester. This is the Stillness, a land long familiar with catastrophe, where the power of the earth is wielded as a weapon. And where there is no mercy. Read the first book in the critically acclaimed, three-time Hugo award-winning trilogy by NYT bestselling author N. K. Jemisin.",
+    category: 'Novel',
+    author: 'T. H. Dreiser',
+    price: 2.99,
+    rating: 12,
+    stock: 100,
+    images: [
+      'https://s3-goods.ozstatic.by/2000/945/24/101/101024945_0.jpg',
+      'https://s3-page.ozstatic.by/128/945/24/101/101024945_0.jpg',
+      'https://s3-page.ozstatic.by/1000/945/24/101/101024945_1.jpg',
+      'https://s3-page.ozstatic.by/1000/945/24/101/101024945_2.jpg',
+    ],
+  },
+  {
+    id: '4',
+    title: 'Science Fiction - Dreiser',
+    annotation:
+      "At the end of the world, a woman must hide her secret This is the way the world ends. . .for the last time. It starts with the great red rift across the heart of the world's sole continent, spewing ash that blots out the sun. It starts with death, with a murdered son and a missing daughter. It starts with betrayal, and long dormant wounds rising up to fester. This is the Stillness, a land long familiar with catastrophe, where the power of the earth is wielded as a weapon. And where there is no mercy. Read the first book in the critically acclaimed, three-time Hugo award-winning trilogy by NYT bestselling author N. K. Jemisin.",
+    category: 'Science Fiction',
+    author: 'T. H. Dreiser',
+    price: 9.99,
+    rating: 20,
+    stock: 100,
+    images: [
+      'https://s3-goods.ozstatic.by/2000/945/24/101/101024945_0.jpg',
+      'https://s3-page.ozstatic.by/128/945/24/101/101024945_0.jpg',
+      'https://s3-page.ozstatic.by/1000/945/24/101/101024945_1.jpg',
+      'https://s3-page.ozstatic.by/1000/945/24/101/101024945_2.jpg',
+    ],
+  },
+];
 
 export const GENRES = [
   {
