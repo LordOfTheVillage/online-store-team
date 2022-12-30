@@ -23,7 +23,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
   const authors = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'author'), [ALL_PRODUCTS]);
   const categories = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'category'), [ALL_PRODUCTS]);
   const prices = useMemo<Record<string, number>>(() => generateRangeByProperty(ALL_PRODUCTS, 'price'), [ALL_PRODUCTS]);
-  const rating = useMemo<Record<string, number>>(() => generateRangeByProperty(ALL_PRODUCTS, 'rating'), [ALL_PRODUCTS]);
+  const stock = useMemo<Record<string, number>>(() => generateRangeByProperty(ALL_PRODUCTS, 'stock'), [ALL_PRODUCTS]);
 
   const products = useMemo(
     () =>
@@ -41,8 +41,8 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
     setSearchParams(saveQueryParams(filters, sort));
   }, [filters, sort]);
 
-  const handleSetFilter = (field: string) => (data: FilterValue) => {
-    setFilters({ ...filters, [field]: data } as IFilters);
+  const handleUpdateFilter = (field: string) => (data: FilterValue) => {
+    setFilters({ ...filters, [field]: typeof data === 'string' ? [data] : data } as IFilters);
   };
 
   const handleUpdateSorting = (sort: string) => {
@@ -62,20 +62,20 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
     {
       title: 'Author',
       sectionsContent: (
-        <MultiSelect list={authors} startSettings={filters.author} updateList={handleSetFilter('author')} />
+        <MultiSelect list={authors} startSettings={filters.author} updateList={handleUpdateFilter('author')} />
       ),
     },
     {
       title: 'Categories',
       sectionsContent: (
-        <MultiSelect list={categories} startSettings={filters.category} updateList={handleSetFilter('category')} />
+        <MultiSelect list={categories} startSettings={filters.category} updateList={handleUpdateFilter('category')} />
       ),
     },
     {
       title: 'Price',
       sectionsContent: (
         <DualSlider
-          updateList={handleSetFilter('price')}
+          updateList={handleUpdateFilter('price')}
           startSettings={filters.price}
           min={prices.min}
           max={prices.max}
@@ -83,13 +83,13 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
       ),
     },
     {
-      title: 'Rating',
+      title: 'Stock',
       sectionsContent: (
         <DualSlider
-          updateList={handleSetFilter('rating')}
-          startSettings={filters.rating}
-          min={rating.min}
-          max={rating.max}
+          updateList={handleUpdateFilter('stock')}
+          startSettings={filters.stock}
+          min={stock.min}
+          max={stock.max}
         />
       ),
     },
@@ -102,7 +102,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
         <Filter
           sections={sectionsArr}
           startSearchSettings={filters.title}
-          updateSearch={handleSetFilter('title')}
+          updateSearch={handleUpdateFilter('title')}
           copyConfig={handleCopy}
           clearConfig={handleClear}
         />

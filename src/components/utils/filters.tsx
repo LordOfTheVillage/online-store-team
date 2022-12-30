@@ -21,4 +21,5 @@ export const FILTERS_CONFIG = {
   category: FILTERS.select('category'),
   price: FILTERS.range('price'),
   rating: FILTERS.range('rating'),
+  stock: FILTERS.range('stock'),
 };

@@ -27,11 +27,4 @@ export interface FullProductProps {
 }
 
 export type FilterValue = string & string[] & Record<string, number>;
-
-export interface IFilters {
-  title?: FilterValue;
-  price?: FilterValue;
-  author?: FilterValue;
-  category?: FilterValue;
-  rating?: FilterValue;
-}
+export type IFilters = Record<string, FilterValue>;

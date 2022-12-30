@@ -191,7 +191,7 @@ export const ALL_PRODUCTS = [
     author: 'N. K. Jemisin',
     price: 5.99,
     rating: 76,
-    stock: 100,
+    stock: 10,
     images: [
       'https://s3-goods.ozstatic.by/2000/945/24/101/101024945_0.jpg',
       'https://s3-page.ozstatic.by/128/945/24/101/101024945_0.jpg',
