@@ -24,7 +24,7 @@ export const PrimarySelect: React.FC<PrimarySelectProps> = ({ onSelect, selected
   return (
     <div className="select-primary">
       <select onChange={handleSelect}>
-        <option value={'default'}>Без сортировки</option>
+        <option value={'default'}>Sort options</option>
         {options.map((item, index) => (
           <option key={index} value={item}>
             {item}

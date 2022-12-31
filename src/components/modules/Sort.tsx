@@ -4,6 +4,7 @@ import { PrimarySelect } from '../simple/PrimarySelect';
 interface SortProps {
   options: string[];
   startSetting?: string;
+  length?: number;
   updateSorting: (sort: string) => void;
 }
 
@@ -15,7 +16,7 @@ export const Sort: React.FC<SortProps> = (props) => {
         <button className="sort-list__view-btn btn btn-view"></button>
       </div>
       <div className="sort-list__found">
-        <span className="sort-list__amount">0</span> Products Found
+        <span className="sort-list__amount">{props.length || 'Ніколькі'}</span> Products Found
       </div>
       <PrimarySelect onSelect={props.updateSorting} selectedItem={props.startSetting} options={props.options} />
     </div>

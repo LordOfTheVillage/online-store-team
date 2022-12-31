@@ -107,7 +107,12 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
           clearConfig={handleClear}
         />
         <div className="catalog-content__second-item">
-          <Sort options={Object.keys(SORTS_CONFIG)} startSetting={sort} updateSorting={handleUpdateSorting} />
+          <Sort
+            options={Object.keys(SORTS_CONFIG)}
+            length={products.length}
+            startSetting={sort}
+            updateSorting={handleUpdateSorting}
+          />
           <Catalog productsCards={products} />
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { AppRoutes } from '../components/utils/pathes';
 import { Layout } from '../components/modules/Layout';
 import { CartPage } from '../components/pages/CartPage';
@@ -15,6 +15,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <CatalogPage />,
+      },
+      {
+        path: AppRoutes.goods,
+        element: <Navigate to={AppRoutes.main} replace />,
       },
       {
         path: AppRoutes.goodsItem,
