@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { FilterValue, IFilters } from 'src/common/types';
-import { ALL_PRODUCTS } from '../../common/data';
+import { FilterValue, IFilters, IPropertyList } from 'src/common/types';
+import { ALL_PRODUCTS as cards } from '../../common/data';
 import { Catalog } from '../modules/Catalog';
 import { Filter } from '../modules/Filtr';
 import { Header } from '../modules/Header';
@@ -20,22 +20,24 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
   const [sort, setSort] = useState<string>(() => parseQuerySort(searchParams));
   const [filters, setFilters] = useState<IFilters>(() => parseQueryFilters(searchParams));
 
-  const authors = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'author'), [ALL_PRODUCTS]);
-  const categories = useMemo<string[]>(() => generateListByProperty(ALL_PRODUCTS, 'category'), [ALL_PRODUCTS]);
-  const prices = useMemo<Record<string, number>>(() => generateRangeByProperty(ALL_PRODUCTS, 'price'), [ALL_PRODUCTS]);
-  const stock = useMemo<Record<string, number>>(() => generateRangeByProperty(ALL_PRODUCTS, 'stock'), [ALL_PRODUCTS]);
-
   const products = useMemo(
     () =>
-      ALL_PRODUCTS.filter((item) => {
-        return Object.keys(filters).every((key) => {
-          const filter = filters[key as keyof typeof filters];
-          const config = FILTERS_CONFIG[key as keyof typeof FILTERS_CONFIG];
-          return !(filter.length !== 0 && !config(filter, item));
-        });
-      }).sort(SORTS_CONFIG[sort as keyof typeof SORTS_CONFIG]),
-    [filters, sort, ALL_PRODUCTS]
+      cards
+        .filter((item) => {
+          return Object.keys(filters).every((key) => {
+            const filter = filters[key as keyof typeof filters];
+            const config = FILTERS_CONFIG[key as keyof typeof FILTERS_CONFIG];
+            return !(filter.length !== 0 && !config(filter, item));
+          });
+        })
+        .sort(SORTS_CONFIG[sort as keyof typeof SORTS_CONFIG]),
+    [filters, sort, cards]
   );
+
+  const authors = useMemo<IPropertyList[]>(() => generateListByProperty(cards, products, 'author'), [products]);
+  const categories = useMemo<IPropertyList[]>(() => generateListByProperty(cards, products, 'category'), [products]);
+  const prices = useMemo<Record<string, number>>(() => generateRangeByProperty(cards, 'price'), []);
+  const stock = useMemo<Record<string, number>>(() => generateRangeByProperty(cards, 'stock'), []);
 
   useEffect(() => {
     setSearchParams(saveQueryParams(filters, sort));

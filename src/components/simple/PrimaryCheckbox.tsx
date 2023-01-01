@@ -20,7 +20,11 @@ export const PrimaryCheckbox: React.FC<PrimaryCheckboxProps> = (props) => {
         value="yes"
       />
       <label className="checkbox-primary__label" htmlFor={`${props.id + id}`}>
-        {props.title}
+        <span>{props.title}</span>
+        <span>
+          {' '}
+          {props.realAmount} / {props.allAmount}
+        </span>
       </label>
     </div>
   );
