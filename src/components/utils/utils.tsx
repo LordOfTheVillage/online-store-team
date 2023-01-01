@@ -36,6 +36,19 @@ export const generateRangeByProperty = (source: FullProductProps[], property: st
   return range;
 };
 
+export const getStringByProperties = (object: FullProductProps, properties: string[]) => {
+  return Object.keys(object)
+    .map((key: string) => {
+      if (!properties.some((p) => p === key)) return '';
+      const e = object[key as keyof typeof object];
+      if (Array.isArray(e)) return e.join('');
+      if (typeof e === 'string') return e;
+      if (typeof e === 'number') return `${e}`;
+      return Object.values(e).join('');
+    })
+    .join(' ');
+};
+
 export const getRandomString = (): string => Math.random().toString(36).substring(2);
 
 export const getRandomNumber = (min: number, max: number): number => {

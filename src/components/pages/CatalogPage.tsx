@@ -103,8 +103,8 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
       <div className="container page-content catalog-content">
         <Filter
           sections={sectionsArr}
-          startSearchSettings={filters.title}
-          updateSearch={handleUpdateFilter('title')}
+          startSearchSettings={filters.search}
+          updateSearch={handleUpdateFilter('search')}
           copyConfig={handleCopy}
           clearConfig={handleClear}
         />

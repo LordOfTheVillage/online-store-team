@@ -1,8 +1,11 @@
 import { FullProductProps } from 'src/common/types';
+import { getStringByProperties } from './utils';
 
 export const FILTERS = {
-  include: (field: string) => (name: string[], object: FullProductProps) => {
-    const string = object[field as keyof FullProductProps] as string;
+  include: () => (name: string[], object: FullProductProps) => {
+    const workProperties = ['title', 'annotation', 'category', 'author', 'price', 'rating', 'stock'];
+    const string: string = getStringByProperties(object, workProperties);
+    console.log(string);
     return string.toLowerCase().includes(name[0].trim().toLowerCase());
   },
   range: (field: string) => (range: Record<string, number>, object: FullProductProps) => {
@@ -16,7 +19,7 @@ export const FILTERS = {
 };
 
 export const FILTERS_CONFIG = {
-  title: FILTERS.include('title'),
+  search: FILTERS.include(),
   author: FILTERS.select('author'),
   category: FILTERS.select('category'),
   price: FILTERS.range('price'),
