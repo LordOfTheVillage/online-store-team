@@ -25,16 +25,16 @@
 
 	
 	&__track {
-		background-color: $white;
+		background-color: $gold-l;
 		width: 100%;
 		z-index: 1;
 	}
 
-	&__range {
-		background-color: $gold-l;
-		z-index: 2;
-		transition: 0s;
-	}
+	// &__range {
+	// 	background-color: $gold-l;
+	// 	z-index: 2;
+	// 	transition: 0s;
+	// }
 
 	&__left-value,
 	&__right-value {
