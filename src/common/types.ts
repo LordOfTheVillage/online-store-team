@@ -10,7 +10,8 @@ export interface PrimaryCheckboxProps {
 }
 
 export interface ProductCardProps {
-  product: FullProductProps;
+  product?: FullProductProps;
+  productCardClass?: string;
 }
 
 export interface FullProductProps {

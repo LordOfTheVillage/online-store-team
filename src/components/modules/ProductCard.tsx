@@ -4,7 +4,7 @@ import { ProductCardProps } from 'src/common/types';
 import { useProductsContext } from '../context/ProductsContext';
 import { AppRoutes } from '../utils/pathes';
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, productCardClass }) => {
   const { id, images, title, price } = product;
   const { products, addProduct, removeProducts } = useProductsContext();
   const hasProduct = useMemo(() => products.findIndex((p) => p.value.id === id) !== -1, [products]);
@@ -13,7 +13,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     else addProduct(product);
   };
   return (
-    <div className="product-card">
+    <div className={productCardClass} className="product-card">
       <NavLink to={AppRoutes.goods + '/' + id}>
         <img className="product-card__img" src={images[0]} />
       </NavLink>

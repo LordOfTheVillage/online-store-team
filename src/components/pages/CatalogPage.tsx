@@ -97,6 +97,15 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
     },
   ];
 
+	// const handleProductCardDisplay = (display: string) => display;
+
+	const [productCardDisplay, setProductCardDisplay] = useState('product-card product-card-cell-max');
+	
+	const handleProductCardDisplay = (display: string) => {
+		setProductCardDisplay(`product-card product-card-${display}`)
+	}
+ 	
+
   return (
     <div className="catalog-page wrapper">
       <Header />
@@ -114,8 +123,9 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
             length={products.length}
             startSetting={sort}
             updateSorting={handleUpdateSorting}
+            getProductCardDisplay={handleProductCardDisplay}
           />
-          <Catalog productsCards={products} />
+          <Catalog productsCards={products} productCardDisplay={productCardDisplay} />
         </div>
       </div>
     </div>
