@@ -1,6 +1,11 @@
-import { FullProductProps } from './types';
+import { FullProductProps, Promo } from './types';
 
 export const SELECT_ITEMS = ['1', '2', '3'];
+
+export const PROMOS: Promo[] = [
+  { name: 'RS', value: 10 },
+  { name: 'VSU', value: 10 },
+];
 
 export const PRODUCTS: FullProductProps[] = [
   {

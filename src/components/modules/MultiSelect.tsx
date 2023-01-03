@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { FC } from 'react';
+import { PropertyList } from 'src/common/types';
 import { PrimaryCheckbox } from '../simple/PrimaryCheckbox';
 
 interface MultiSelectProps {
-  list: string[];
+  list: PropertyList[];
   startSettings: string[] | undefined;
   updateList: (name: string[]) => void;
 }
@@ -19,7 +20,8 @@ export const MultiSelect: FC<MultiSelectProps> = ({ list, startSettings, updateL
   const handleSelectItems = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     const label = target.parentNode.lastChild as HTMLLabelElement;
-    const text: string = label.innerText;
+    const span = label.firstChild as HTMLSpanElement;
+    const text: string = span.innerText;
     const hasElement: boolean = checkedList.includes(text);
 
     target.checked = !hasElement;
@@ -35,9 +37,11 @@ export const MultiSelect: FC<MultiSelectProps> = ({ list, startSettings, updateL
       {list.map((e, i) => (
         <PrimaryCheckbox
           key={i}
-          checked={startSettings === undefined ? false : startSettings.includes(e)}
+          checked={startSettings === undefined ? false : startSettings.findIndex((s) => s === e.title) !== -1}
           onChange={handleSelectItems}
-          title={e}
+          realAmount={e.realAmount}
+          allAmount={e.allAmount}
+          title={e.title}
           id={i}
         />
       ))}

@@ -4,15 +4,14 @@ export interface PrimaryCheckboxProps {
   id: number;
   title: string;
   checked?: boolean;
+  realAmount?: number;
+  allAmount?: number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface ProductCardProps {
-  id: string;
-  title: string;
-  img: string;
-  price: number;
-	productCardClass: string
+  product?: FullProductProps;
+  productCardClass?: string;
 }
 
 export interface FullProductProps {
@@ -25,6 +24,22 @@ export interface FullProductProps {
   rating: number;
   stock: number;
   images: string[];
+}
+
+export interface PropertyList {
+  title?: string;
+  realAmount?: number;
+  allAmount?: number;
+}
+
+export interface CartProducts {
+  count: number;
+  value: FullProductProps;
+}
+
+export interface Promo {
+  name: string;
+  value: number;
 }
 
 export type FilterValue = string & string[] & Record<string, number>;

@@ -12,7 +12,7 @@ export const Catalog: React.FC<CatalogProps> = ({ productsCards, productCardDisp
   return (
     <div className="catalog">
       {productsCards.map((item, index) => (
-        <ProductCard key={index} id={item.id} title={item.title} price={item.price} img={item.images[0]} productCardClass={productCardDisplay} />
+        <ProductCard key={index} product={item} productCardClass={productCardDisplay} />
       ))}
     </div>
   );

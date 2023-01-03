@@ -1,11 +1,12 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { AppRoutes } from '../components/utils/pathes';
 import { Layout } from '../components/modules/Layout';
 import { CartPage } from '../components/pages/CartPage';
 import { NotFoundPage } from '../components/pages/NotFoundPage';
 import { ProductPage } from '../components/pages/ProductPage';
 import { CatalogPage } from '../components/pages/CatalogPage';
+import { ProductsContextProvider } from '../components/context/ProductsContext';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <CatalogPage />,
+      },
+      {
+        path: AppRoutes.goods,
+        element: <Navigate to={AppRoutes.main} replace />,
       },
       {
         path: AppRoutes.goodsItem,
@@ -33,5 +38,9 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ProductsContextProvider>
+      <RouterProvider router={router} />
+    </ProductsContextProvider>
+  );
 }

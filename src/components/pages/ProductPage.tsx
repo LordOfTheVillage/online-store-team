@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FullProductProps } from 'src/common/types';
 import { ALL_PRODUCTS } from '../../common/data';
+import { Breadcrumb } from '../modules/Breadcrumb';
 import { ProductGallery } from '../modules/ProductGallery';
 import ProductInfo from '../modules/ProductInfo';
 import { AppRoutes } from '../utils/pathes';
@@ -18,6 +19,7 @@ export const ProductPage: React.FC = (): any => {
 
   return product ? (
     <>
+      <Breadcrumb product={product} />
       <div className="catalog-page wrapper">
         <div className="container page-content product-content">
           <div className="product-content__way"></div>
