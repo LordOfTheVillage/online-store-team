@@ -25,7 +25,7 @@ export interface FullProductProps {
   images: string[];
 }
 
-export interface IPropertyList {
+export interface PropertyList {
   title?: string;
   realAmount?: number;
   allAmount?: number;
@@ -36,7 +36,7 @@ export interface CartProducts {
   value: FullProductProps;
 }
 
-export interface IPromo {
+export interface Promo {
   name: string;
   value: number;
 }

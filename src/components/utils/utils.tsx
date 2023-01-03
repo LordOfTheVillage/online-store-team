@@ -1,11 +1,11 @@
-import { FullProductProps, IPropertyList } from 'src/common/types';
+import { FullProductProps, PropertyList } from 'src/common/types';
 
 export const getProductById = (id: string, products: FullProductProps[]): FullProductProps => {
   return products.find((e) => e.id === id);
 };
 
 export const generateListByProperty = (source: FullProductProps[], subSource: FullProductProps[], property: string) => {
-  let list: IPropertyList[] = [];
+  let list: PropertyList[] = [];
   [...source].forEach((element: FullProductProps) => {
     const title = element[property as keyof typeof element] as string;
     const index = list.findIndex((item) => item.title === title);

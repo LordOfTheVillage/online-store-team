@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { IPromo } from 'src/common/types';
+import { Promo } from 'src/common/types';
 import { ApplyInput } from './ApplyInput';
 
 interface InputListProps {
-  list: IPromo[];
+  list: Promo[];
   string: string;
   onClick: (name: string) => void;
 }

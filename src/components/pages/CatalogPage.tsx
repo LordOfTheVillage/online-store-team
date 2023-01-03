@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { FilterValue, IFilters, IPropertyList } from 'src/common/types';
+import { FilterValue, IFilters, PropertyList } from 'src/common/types';
 import { ALL_PRODUCTS as cards } from '../../common/data';
 import { Catalog } from '../modules/Catalog';
 import { Filter } from '../modules/Filtr';
@@ -34,8 +34,8 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
     [filters, sort, cards]
   );
 
-  const authors = useMemo<IPropertyList[]>(() => generateListByProperty(cards, products, 'author'), [products]);
-  const categories = useMemo<IPropertyList[]>(() => generateListByProperty(cards, products, 'category'), [products]);
+  const authors = useMemo<PropertyList[]>(() => generateListByProperty(cards, products, 'author'), [products]);
+  const categories = useMemo<PropertyList[]>(() => generateListByProperty(cards, products, 'category'), [products]);
   const prices = useMemo<Record<string, number>>(() => generateRangeByProperty(cards, 'price'), []);
   const stock = useMemo<Record<string, number>>(() => generateRangeByProperty(cards, 'stock'), []);
 

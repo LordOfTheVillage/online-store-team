@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { FC } from 'react';
-import { IPropertyList } from 'src/common/types';
+import { PropertyList } from 'src/common/types';
 import { PrimaryCheckbox } from '../simple/PrimaryCheckbox';
 
 interface MultiSelectProps {
-  list: IPropertyList[];
+  list: PropertyList[];
   startSettings: string[] | undefined;
   updateList: (name: string[]) => void;
 }

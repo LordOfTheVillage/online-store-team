@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { PROMOS } from '../../common/data';
-import { IPromo } from '../../common/types';
+import { Promo } from '../../common/types';
 import { ApplyInput } from '../simple/ApplyInput';
 import { InputList } from '../simple/InputList';
 import { PrimaryButton } from '../simple/PrimaryButton';
@@ -13,7 +13,7 @@ interface CartFormProps {
 }
 
 export const CartForm: React.FC<CartFormProps> = ({ amount, totalPrice, onOpenModal }) => {
-  const [promos, setPromos] = useState<IPromo[]>([]);
+  const [promos, setPromos] = useState<Promo[]>([]);
   const [value, setValue] = useState<string>('');
   const promo = useMemo(() => PROMOS.find((p) => p.name === value.trim()) || undefined, [value]);
   const discount = useMemo(() => promos.reduce((a, b) => (a += b.value) || 0, 0), [promos]);
