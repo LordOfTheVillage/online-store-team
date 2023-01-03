@@ -11,7 +11,7 @@ export const Catalog: React.FC<CatalogProps> = ({ productsCards }) => {
   return (
     <div className="catalog">
       {productsCards.map((item, index) => (
-        <ProductCard key={index} id={item.id} title={item.title} price={item.price} img={item.images[0]} />
+        <ProductCard key={index} product={item} />
       ))}
     </div>
   );

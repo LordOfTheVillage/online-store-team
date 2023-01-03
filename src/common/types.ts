@@ -10,10 +10,7 @@ export interface PrimaryCheckboxProps {
 }
 
 export interface ProductCardProps {
-  id: string;
-  title: string;
-  img: string;
-  price: number;
+  product: FullProductProps;
 }
 
 export interface FullProductProps {
@@ -32,6 +29,16 @@ export interface IPropertyList {
   title?: string;
   realAmount?: number;
   allAmount?: number;
+}
+
+export interface CartProducts {
+  count: number;
+  value: FullProductProps;
+}
+
+export interface IPromo {
+  name: string;
+  value: number;
 }
 
 export type FilterValue = string & string[] & Record<string, number>;
