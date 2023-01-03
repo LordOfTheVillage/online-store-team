@@ -15,8 +15,10 @@
   border: 1px solid #E0BEA2;
 }
 
-.input-primary:invalid + .input-primary::before{
-	content: 'Error';
-	display: inline-flex;
-	position: absolute;
+.input-primary:invalid{
+	border: 1px solid red;
+}
+
+.input-primary:before{
+	content: '2222';
 }
