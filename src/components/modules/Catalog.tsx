@@ -5,13 +5,14 @@ import { ProductCard } from './ProductCard';
 
 interface CatalogProps {
   productsCards: Array<FullProductProps>;
+	productCardDisplay: string
 }
 
-export const Catalog: React.FC<CatalogProps> = ({ productsCards }) => {
+export const Catalog: React.FC<CatalogProps> = ({ productsCards, productCardDisplay }) => {
   return (
     <div className="catalog">
       {productsCards.map((item, index) => (
-        <ProductCard key={index} id={item.id} title={item.title} price={item.price} img={item.images[0]} />
+        <ProductCard key={index} id={item.id} title={item.title} price={item.price} img={item.images[0]} productCardClass={productCardDisplay} />
       ))}
     </div>
   );

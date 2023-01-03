@@ -3,10 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { ProductCardProps } from 'src/common/types';
 import { AppRoutes } from '../utils/pathes';
 
-export const ProductCard: React.FC<ProductCardProps> = ({ id, title, img, price }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ id, title, img, price, productCardClass }) => {
   return (
     // <a className="product-card" href="#">
-    <NavLink className="product-card" to={AppRoutes.goods + '/' + id}>
+    <NavLink className={productCardClass} to={AppRoutes.goods + '/' + id}>
       <img className="product-card__img" src={img} />
       <div className="product-card__description">
         <div className="product-card__text">
