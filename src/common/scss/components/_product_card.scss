@@ -1,21 +1,40 @@
 .product-card {
 
-	
 	@include border;
-	width: 22%;
-	margin: 0 2%;
-	background: $white;
+	&-cell-max{
+		width: 22%;
+		margin: 0 2%;
+
+		&:nth-child(4n){
+			margin-right: 0;
+		}
+	
+		&:first-of-type, &:nth-child(4n + 1){
+			margin-left: 0;
+		}
+
+		background: $white;
 	position: relative;
-
-	&:nth-child(4n){
-		margin-right: 0;
-	}
-
-	&:first-of-type, &:nth-child(4n + 1){
-		margin-left: 0;
-	}
-
 	margin-bottom: 30px;
+	}
+	&-cell-min{
+		width: 18%;
+		margin: 0 1%;
+		
+		&:nth-child(5n){
+			margin-right: 0;
+		}
+	
+		&:first-of-type, &:nth-child(5n + 1){
+			margin-left: 0;
+		}
+
+		background: $white;
+	position: relative;
+	margin-bottom: 30px;
+	}
+	
+	
 
 	// .product-card__img
 

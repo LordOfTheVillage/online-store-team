@@ -12,6 +12,7 @@ export interface ProductCardProps {
   title: string;
   img: string;
   price: number;
+	productCardClass: string
 }
 
 export interface FullProductProps {
