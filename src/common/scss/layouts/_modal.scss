@@ -31,9 +31,9 @@
 	position: relative;
 	transition: all 0.3s ease;
 	padding: 30px;
-	width: 40%;
+	min-width: 40%;
 	// backdrop-filter: blur(15px);
-	min-height: 400px;
+	// min-height: 400px;
 }
 
 .modal-close{
@@ -49,4 +49,9 @@
 .modal-active{
 	opacity: 1;
 	visibility: visible;
+}
+
+.order-complete{
+	font-size: 50px;
+	color: $gold-l;
 }
