@@ -45,10 +45,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
       </div>
       <div className="info__row">
         <PrimaryButton onClick={handleOpenCart} title="Buy" />
-				{hasProduct 
-					? <button onClick={handleChangeCart} className="product-card__cart btn-cart-full"></button>
-					: <button onClick={handleChangeCart} className="product-card__cart btn-cart"></button>
-				}
+				<button onClick={handleChangeCart} className={`product-card__cart ${hasProduct ? 'btn-cart-full' : 'btn-cart'}`}></button> 
       </div>
     </div>
   );
