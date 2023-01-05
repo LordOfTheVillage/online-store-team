@@ -376,8 +376,7 @@ body {
   position: relative;
   transition: all 0.3s ease;
   padding: 30px;
-  width: 40%;
-  min-height: 400px;
+  min-width: 40%;
 }
 
 .modal-close {
@@ -393,6 +392,11 @@ body {
 .modal-active {
   opacity: 1;
   visibility: visible;
+}
+
+.order-complete {
+  font-size: 50px;
+  color: #E0BEA2;
 }
 
 .order-form {
@@ -495,10 +499,13 @@ body {
   border: 1px solid #E0BEA2;
 }
 
-.input-primary:invalid + .input-primary::before {
-  content: "Error";
-  display: inline-flex;
-  position: absolute;
+.input-invalid {
+  border: 1px solid red;
+}
+
+.input-parent {
+  width: 100%;
+  display: flex;
 }
 
 .select-primary {
@@ -754,7 +761,18 @@ body {
   margin-right: 5px;
   width: 50px;
   height: 100%;
-  background: url("./assets/icons/mastercard.png") no-repeat;
-  background-position: center;
+  background: url("./assets/icons/card.png") center no-repeat;
+  background-size: contain;
+}
+.card__logo-mastercard {
+  background: url("./assets/icons/mastercard.png") center no-repeat;
+  background-size: contain;
+}
+.card__logo-visa {
+  background: url("./assets/icons/visa.png") center no-repeat;
+  background-size: contain;
+}
+.card__logo-unionpay {
+  background: url("./assets/icons/unionpay.png") center no-repeat;
   background-size: contain;
 }

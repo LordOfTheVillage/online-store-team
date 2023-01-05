@@ -44,3 +44,11 @@ export interface Promo {
 
 export type FilterValue = string & string[] & Record<string, number>;
 export type IFilters = Record<string, FilterValue>;
+
+export interface inputData{
+	id: string, 
+	title: string, 
+	type?: string,
+	pattern?: string, 
+	value: string
+}
