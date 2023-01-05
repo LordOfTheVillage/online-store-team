@@ -37,6 +37,12 @@ export const CartRow: React.FC<CartRowProps> = ({ productInfo, number }) => {
           <div className="cart__price">
             Price: $<span>{productInfo.price}</span>
           </div>
+					<div className="info__stock">
+						Stock: <span>{productInfo.stock}</span>
+					</div>
+					<div className="info__rating">
+						Rating: <span>{productInfo.rating}</span>
+					</div>
         </div>
         <div className="cart__annotation">{productInfo.annotation}</div>
       </NavLink>

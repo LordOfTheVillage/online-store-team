@@ -22,9 +22,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, productCardCl
           <div className="product-card__title">{title}</div>
           <div className="product-card__price">${price}</div>
         </NavLink>
-        <button onClick={handleChangeCart} className="product-card__cart btn-cart">
-          {hasProduct ? 'X' : ''}
-        </button>
+          {hasProduct 
+					? <button onClick={handleChangeCart} className="product-card__cart btn-cart-full"></button>
+					: <button onClick={handleChangeCart} className="product-card__cart btn-cart"></button>
+					}
       </div>
       <div className="product-card__bg" />
     </div>

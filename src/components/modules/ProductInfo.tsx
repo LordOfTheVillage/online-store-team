@@ -35,13 +35,20 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
         Author: <span>{product.author}</span>
       </div>
       <div className="info__price">
-        Price: <span>{product.price}</span>
+        Price: <span>${product.price}</span>
+      </div>
+			<div className="info__stock">
+        Stock: <span>{product.stock}</span>
+      </div>
+      <div className="info__rating">
+				Rating: <span>{product.rating}</span>
       </div>
       <div className="info__row">
         <PrimaryButton onClick={handleOpenCart} title="Buy" />
-        <button onClick={handleChangeCart} className="info__cart btn btn-cart">
-          {hasProduct ? 'X' : ''}
-        </button>
+				{hasProduct 
+					? <button onClick={handleChangeCart} className="product-card__cart btn-cart-full"></button>
+					: <button onClick={handleChangeCart} className="product-card__cart btn-cart"></button>
+				}
       </div>
     </div>
   );

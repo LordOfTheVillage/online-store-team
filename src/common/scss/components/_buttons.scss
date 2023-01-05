@@ -39,14 +39,18 @@
 	}
 
 	&-cart{
-		background: url("./assets/icons/cart-l.svg") no-repeat;
-		background-position: right;
+		background: url("./assets/icons/cart-l.svg") right no-repeat;
 		width: 25px;
 		height: 25px;
 
 		&:hover{
-			background: url("./assets/icons/cart-d.svg") no-repeat;
-			background-position: right;
+			background: url("./assets/icons/cart-d.svg") right no-repeat;
+		}
+
+		&-full{
+			background: url("./assets/icons/cart-full.svg") right no-repeat;
+			width: 25px;
+			height: 25px;
 		}
 	}
 

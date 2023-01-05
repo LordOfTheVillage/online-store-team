@@ -439,14 +439,17 @@ body {
   background-size: 50%;
 }
 .btn-cart {
-  background: url("./assets/icons/cart-l.svg") no-repeat;
-  background-position: right;
+  background: url("./assets/icons/cart-l.svg") right no-repeat;
   width: 25px;
   height: 25px;
 }
 .btn-cart:hover {
-  background: url("./assets/icons/cart-d.svg") no-repeat;
-  background-position: right;
+  background: url("./assets/icons/cart-d.svg") right no-repeat;
+}
+.btn-cart-full {
+  background: url("./assets/icons/cart-full.svg") right no-repeat;
+  width: 25px;
+  height: 25px;
 }
 .btn-basket {
   background: url("./assets/icons/basket.svg") no-repeat;
@@ -721,6 +724,7 @@ body {
 .cart__description {
   display: flex;
   flex-direction: column;
+  width: 450px;
 }
 .cart__description > * {
   margin-bottom: 10px;
