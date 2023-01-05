@@ -618,6 +618,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   font-size: 15px;
+  width: calc(100% - 35px);
 }
 .product-card__title {
   margin-bottom: 5px;
