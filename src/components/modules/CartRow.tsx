@@ -23,7 +23,7 @@ export const CartRow: React.FC<CartRowProps> = ({ productInfo, number }) => {
 
   return (
     <div className="cart__row">
-      <div>{number}</div>
+      <div style={{fontSize: '25px'}}>{number}</div>
       <NavLink to={AppRoutes.goods + '/' + productInfo.id} className="cart__product">
         <img className="cart__img" src={productInfo.images[0]} />
         <div className="cart__description">
