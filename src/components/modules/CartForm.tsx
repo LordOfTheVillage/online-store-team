@@ -30,12 +30,12 @@ export const CartForm: React.FC<CartFormProps> = ({ amount, totalPrice, onOpenMo
       <div>Products: {amount}</div>
       <div style={{ textDecoration: discount ? 'line-through' : 'none' }}>Total Price: ${totalPrice}</div>
       <div style={{ display: discount ? 'block' : 'none' }}>Price with discount: ${priceWithDiscount}</div>
-      <InputList list={promos} string={'OFF'} onClick={handleRemovePromo} />
       <PrimaryInput title="Enter promo code" onChange={handleSetValue} />
       {promo && !promos.find((p) => p.name === promo.name) && (
         <ApplyInput data={`${value} exists`} string={'ADD'} onClick={() => setPromos([...promos, promo])} />
       )}
-      <span style={{ fontSize: '1rem', opacity: '0.5', textAlign: 'center' }}>Test promo: RS, VSU</span>
+			<InputList list={promos} string={'OFF'} onClick={handleRemovePromo} />
+      <span style={{ fontSize: '1rem', opacity: '0.5', textAlign: 'center', margin: '10px 0px' }}>Test promo: RS, VSU</span>
       <PrimaryButton title="Buy" onClick={onOpenModal} />
     </div>
   );
