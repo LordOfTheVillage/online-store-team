@@ -12,4 +12,15 @@
 	&__gallery {
 		// width: 40%;
 	}
+
+	&-content__way{
+		margin-bottom: 30px;
+		font-size: 20px;
+
+		&>*{
+			padding-right: 15px;
+			padding-left: 20px;
+			background: url('./assets/icons/arrow.svg') 0 50% no-repeat;
+		}
+	}
 }

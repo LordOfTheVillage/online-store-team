@@ -161,6 +161,16 @@ body {
 .product > * {
   flex-basis: 45%;
 }
+.product-content__way {
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+.product-content__way > * {
+  padding-right: 15px;
+  padding-left: 20px;
+  background: url("./assets/icons/arrow.svg") 0 50% no-repeat;
+}
+
 .gallery {
   display: flex;
   height: 750px;

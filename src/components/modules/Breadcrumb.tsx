@@ -9,14 +9,10 @@ interface BreadcrumbProps {
 
 export const Breadcrumb: FC<BreadcrumbProps> = ({ product }) => {
   return (
-    <div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <NavLink to={AppRoutes.main}>Store</NavLink> / <span>{product.author}</span> / <span>{product.category}</span> /
+    <div className="product-content__way">
+      <NavLink to={AppRoutes.main}>Store</NavLink>
+			<span>{product.author}</span>
+			<span>{product.category}</span>
       <span> {product.title}</span>
     </div>
   );
