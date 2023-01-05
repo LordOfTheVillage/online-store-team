@@ -36,6 +36,7 @@
 	&__description {
 		display: flex;
 		flex-direction: column;
+		width: 450px;
 		&>*{
 			margin-bottom: 10px;
 		}

@@ -19,10 +19,11 @@ export const ProductPage: React.FC = (): any => {
 
   return product ? (
     <>
-      <Breadcrumb product={product} />
+      
       <div className="catalog-page wrapper">
         <div className="container page-content product-content">
-          <div className="product-content__way"></div>
+				<Breadcrumb product={product} />
+          {/* <div className="product-content__way"></div> */}
           <div className="product-content__product product">
             <ProductGallery images={product?.images} />
             <ProductInfo product={product} />

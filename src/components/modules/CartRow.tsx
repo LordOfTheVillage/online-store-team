@@ -23,7 +23,7 @@ export const CartRow: React.FC<CartRowProps> = ({ productInfo, number }) => {
 
   return (
     <div className="cart__row">
-      <div>{number}</div>
+      <div style={{fontSize: '25px'}}>{number}</div>
       <NavLink to={AppRoutes.goods + '/' + productInfo.id} className="cart__product">
         <img className="cart__img" src={productInfo.images[0]} />
         <div className="cart__description">
@@ -37,6 +37,12 @@ export const CartRow: React.FC<CartRowProps> = ({ productInfo, number }) => {
           <div className="cart__price">
             Price: $<span>{productInfo.price}</span>
           </div>
+					<div className="info__stock">
+						Stock: <span>{productInfo.stock}</span>
+					</div>
+					<div className="info__rating">
+						Rating: <span>{productInfo.rating}</span>
+					</div>
         </div>
         <div className="cart__annotation">{productInfo.annotation}</div>
       </NavLink>

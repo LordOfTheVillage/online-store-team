@@ -13,9 +13,6 @@ export const DualSlider: React.FC<DualSliderProps> = ({ updateList, startSetting
 
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
-  // const range = useRef(null);
-
-  // const getPercent = (value: number) => Math.round(((value - min) / (max - min)) * 100);
 
   useEffect(() => {
     if (startSettings) {
@@ -38,25 +35,6 @@ export const DualSlider: React.FC<DualSliderProps> = ({ updateList, startSetting
     const list: Record<string, number> = { min: minVal, max: maxVal };
     updateList(list);
   }, [minVal, maxVal]);
-
-  // useEffect(() => {
-    // const minPercent = getPercent(minVal);
-    // const maxPercent = getPercent(maxValRef.current);
-
-    // if (range.current) {
-    //   range.current.style.left = `${minPercent}%`;
-    //   range.current.style.width = `${maxPercent - minPercent}%`;
-    // }
-  // }, [minVal]);
-
-  // useEffect(() => {
-    // const minPercent = getPercent(minValRef.current);
-    // const maxPercent = getPercent(maxVal);
-
-    // if (range.current) {
-    //   range.current.style.width = `${maxPercent - minPercent}%`;
-    // }
-  // }, [maxVal]);
 
   return (
     <div className="slider-container">

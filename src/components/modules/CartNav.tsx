@@ -35,7 +35,7 @@ export const CartNav: React.FC<CartNavProps> = ({ updatePage, updatePagination }
     <div className="cart__nav">
       <div>
         <div className="cart__nav-title">Pagination: </div>
-        <input type="number" min={1} step={1} max={products.length} value={pagination} onChange={handleSetValue} />
+        <input className="input-primary" type="number" min={1} step={1} max={products.length} value={pagination} onChange={handleSetValue} />
       </div>
       <div>
         <div className="cart__nav-title">Page: </div>

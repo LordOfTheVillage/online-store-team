@@ -54,6 +54,7 @@
 		align-items: center;
 		padding: 5px 10px;
 		border-top: 2px solid $gold-l;
+		// width: 70%;
 	}
 
 	// .product-card__text
@@ -63,7 +64,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		font-size: 15px;
-		
+		width: calc(100% - 35px);
 	}
 
 	// .product-card__title
