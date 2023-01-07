@@ -18,7 +18,7 @@ export const CartForm: React.FC<CartFormProps> = ({ amount, totalPrice, onOpenMo
   const promo = useMemo(() => PROMOS.find((p) => p.name === value.trim()) || undefined, [value]);
   const discount = useMemo(() => promos.reduce((a, b) => (a += b.value) || 0, 0), [promos]);
   const priceWithDiscount = useMemo(
-    () => totalPrice - +((totalPrice * discount) / 100).toFixed(2),
+    () => (totalPrice - +((totalPrice * discount) / 100)).toFixed(2),
     [totalPrice, discount]
   );
 
@@ -32,10 +32,16 @@ export const CartForm: React.FC<CartFormProps> = ({ amount, totalPrice, onOpenMo
       <div style={{ display: discount ? 'block' : 'none' }}>Price with discount: ${priceWithDiscount}</div>
       <PrimaryInput title="Enter promo code" onChange={handleSetValue} />
       {promo && !promos.find((p) => p.name === promo.name) && (
-        <ApplyInput data={`${value} exists`} string={'ADD'} onClick={() => setPromos([...promos, promo])} />
+        <ApplyInput
+          data={`${value} exists - ${promo.value}%`}
+          string={'ADD'}
+          onClick={() => setPromos([...promos, promo])}
+        />
       )}
-			<InputList list={promos} string={'OFF'} onClick={handleRemovePromo} />
-      <span style={{ fontSize: '1rem', opacity: '0.5', textAlign: 'center', margin: '10px 0px' }}>Test promo: RS, VSU</span>
+      <InputList list={promos} string={'OFF'} onClick={handleRemovePromo} />
+      <span style={{ fontSize: '1rem', opacity: '0.5', textAlign: 'center', margin: '10px 0px' }}>
+        Test promo: RS, VSU
+      </span>
       <PrimaryButton title="Buy" onClick={onOpenModal} />
     </div>
   );

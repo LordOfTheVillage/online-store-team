@@ -1,26 +1,28 @@
-import { IFilters } from 'src/common/types';
+import { Filters } from 'src/common/types';
 
-export const parseQuerySort = (params: URLSearchParams): string => {
-  let result = '';
-  params.forEach((v: string, k: string) => (k === 'sort' ? (result = v) : null));
-  return result;
+export const parseQueryPrimitive = (params: URLSearchParams, property: string) => {
+  return params.get(property);
 };
 
-export const parseQueryFilters = (params: URLSearchParams): IFilters => {
-  let result: IFilters = {};
+export const saveQueryPrimitive = (data: number | string | boolean, property: string) => {
+  return data ? { [property]: `${data}` } : {};
+};
+
+export const parseQueryFilters = (params: URLSearchParams, properties: string[]): Filters => {
+  let result: Filters = {};
   params.forEach((value: string, key: string) => {
-    if (key === 'sort') return null;
-    if (!value.includes('↕')) result = { ...result, [key]: [value] } as IFilters;
+    if (!properties.includes(key)) return null;
+    if (!value.includes('↕')) result = { ...result, [key]: [value] } as Filters;
     else {
       const values = value.split('↕');
-      if (isNaN(parseInt(values[0]))) result = { ...result, [key]: values } as IFilters;
-      else result = { ...result, [key]: { min: +values[0], max: +values[1] } } as IFilters;
+      if (isNaN(parseInt(values[0]))) result = { ...result, [key]: values } as Filters;
+      else result = { ...result, [key]: { min: +values[0], max: +values[1] } } as Filters;
     }
   });
   return result;
 };
 
-export const saveQueryParams = (filters: IFilters, sort: string) => {
+export const saveQueryFilters = (filters: Filters) => {
   let params = {};
   if (Object.keys(filters).length > 0) {
     Object.keys(filters).forEach((key) => {
@@ -36,6 +38,5 @@ export const saveQueryParams = (filters: IFilters, sort: string) => {
       }
     });
   }
-  if (sort) params = { ...params, sort: sort };
   return params;
 };

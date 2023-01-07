@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { FilterValue, IFilters, PropertyList } from 'src/common/types';
+import { FilterValue, Filters, PropertyList } from 'src/common/types';
 import { ALL_PRODUCTS as cards } from '../../common/data';
 import { Catalog } from '../modules/Catalog';
 import { Filter } from '../modules/Filtr';
@@ -9,7 +9,7 @@ import { MultiSelect } from '../modules/MultiSelect';
 import { Sort } from '../modules/Sort';
 import { DualSlider } from '../simple/DualSlider';
 import { FILTERS_CONFIG } from '../utils/filters';
-import { parseQueryFilters, parseQuerySort, saveQueryParams } from '../utils/query';
+import { parseQueryFilters, parseQueryPrimitive, saveQueryFilters, saveQueryPrimitive } from '../utils/query';
 import { SORTS_CONFIG } from '../utils/sorts';
 import { generateListByProperty, generateRangeByProperty } from '../utils/utils';
 
@@ -17,8 +17,11 @@ interface CatalogPageProps {}
 
 export const CatalogPage: React.FC<CatalogPageProps> = () => {
   const [searchParams, setSearchParams] = useSearchParams({});
-  const [sort, setSort] = useState<string>(() => parseQuerySort(searchParams));
-  const [filters, setFilters] = useState<IFilters>(() => parseQueryFilters(searchParams));
+  const [productCardDisplay, setProductCardDisplay] = useState(
+    () => parseQueryPrimitive(searchParams, 'display') || 'max'
+  );
+  const [sort, setSort] = useState<string>(() => parseQueryPrimitive(searchParams, 'sort'));
+  const [filters, setFilters] = useState<Filters>(() => parseQueryFilters(searchParams, Object.keys(cards[0])));
 
   const products = useMemo(
     () =>
@@ -40,11 +43,15 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
   const stock = useMemo<Record<string, number>>(() => generateRangeByProperty(cards, 'stock'), []);
 
   useEffect(() => {
-    setSearchParams(saveQueryParams(filters, sort));
-  }, [filters, sort]);
+    setSearchParams({
+      ...saveQueryFilters(filters),
+      ...saveQueryPrimitive(sort, 'sort'),
+      ...saveQueryPrimitive(productCardDisplay, 'display'),
+    });
+  }, [filters, sort, productCardDisplay]);
 
   const handleUpdateFilter = (field: string) => (data: FilterValue) => {
-    setFilters({ ...filters, [field]: typeof data === 'string' ? [data] : data } as IFilters);
+    setFilters({ ...filters, [field]: typeof data === 'string' ? [data] : data } as Filters);
   };
 
   const handleUpdateSorting = (sort: string) => {
@@ -53,11 +60,14 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
 
   const handleClear = () => {
     setFilters({});
-    setSort('');
   };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(document.location.href);
+  };
+
+  const handleProductCardDisplay = (display: string) => {
+    setProductCardDisplay(`${display}`);
   };
 
   const sectionsArr = [
@@ -97,15 +107,6 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
     },
   ];
 
-	// const handleProductCardDisplay = (display: string) => display;
-
-	const [productCardDisplay, setProductCardDisplay] = useState('product-card product-card-cell-max');
-	
-	const handleProductCardDisplay = (display: string) => {
-		setProductCardDisplay(`product-card product-card-${display}`)
-	}
- 	
-
   return (
     <div className="catalog-page wrapper">
       <Header />
@@ -125,7 +126,11 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
             updateSorting={handleUpdateSorting}
             getProductCardDisplay={handleProductCardDisplay}
           />
-          <Catalog productsCards={products} productCardDisplay={productCardDisplay} />
+          {products.length ? (
+            <Catalog productsCards={products} productCardDisplay={productCardDisplay} />
+          ) : (
+            <div style={{ fontSize: '2.5rem', marginLeft: '35rem', marginTop: '5rem' }}>Products not found</div>
+          )}
         </div>
       </div>
     </div>
