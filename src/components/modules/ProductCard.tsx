@@ -13,7 +13,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, productCardCl
     else addProduct(product);
   };
   return (
-    <div className={`${productCardClass} product-card`}>
+    <div className={`product-card product-card-cell-${productCardClass} product-card`}>
       <NavLink to={AppRoutes.goods + '/' + id}>
         <img className="product-card__img" src={images[0]} />
       </NavLink>
@@ -22,7 +22,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, productCardCl
           <div className="product-card__title">{title}</div>
           <div className="product-card__price">${price}</div>
         </NavLink>
-				<button onClick={handleChangeCart} className={`product-card__cart ${hasProduct ? 'btn-cart-full' : 'btn-cart'}`}></button> 
+        <button
+          onClick={handleChangeCart}
+          className={`product-card__cart ${hasProduct ? 'btn-cart-full' : 'btn-cart'}`}
+        ></button>
       </div>
       <div className="product-card__bg" />
     </div>

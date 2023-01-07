@@ -5,6 +5,7 @@ class Pathes {
   cart = '/cart';
   undefined = '/undefined';
   any = '*';
+  openModal = '?modal=true';
 }
 
 export const AppRoutes = new Pathes();
