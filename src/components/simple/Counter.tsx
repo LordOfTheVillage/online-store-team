@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 interface CounterProps {
-  value?: number;
+  value: number;
   maxVal: number;
   minVal: number;
-  updateValue?: (mode: string) => void;
+  updateValue: (mode: string) => void;
 }
 
 export const Counter: React.FC<CounterProps> = (props) => {

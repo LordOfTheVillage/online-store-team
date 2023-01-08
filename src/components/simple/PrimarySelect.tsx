@@ -17,7 +17,8 @@ export const PrimarySelect: React.FC<PrimarySelectProps> = ({ onSelect, selected
   };
 
   useEffect(() => {
-    const select = document.querySelector('.select-primary').children[0] as HTMLSelectElement;
+    const element = document.querySelector('.select-primary') as HTMLElement;
+    const select = element.children[0] as HTMLSelectElement;
     select.value = selectedItem ? selectedItem : 'default';
   }, [selectedItem]);
 

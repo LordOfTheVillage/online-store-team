@@ -5,7 +5,6 @@ export const FILTERS = {
   include: () => (name: string[], object: FullProductProps) => {
     const workProperties = ['title', 'annotation', 'category', 'author', 'price', 'rating', 'stock'];
     const string: string = getStringByProperties(object, workProperties);
-    console.log(string);
     return string.toLowerCase().includes(name[0].trim().toLowerCase());
   },
   range: (field: string) => (range: Record<string, number>, object: FullProductProps) => {

@@ -1,7 +1,7 @@
 import { Filters } from 'src/common/types';
 
 export const parseQueryPrimitive = (params: URLSearchParams, property: string) => {
-  return params.get(property);
+  return params.get(property) as string;
 };
 
 export const saveQueryPrimitive = (data: number | string | boolean, property: string) => {
@@ -33,8 +33,8 @@ export const saveQueryFilters = (filters: Filters) => {
       } else if (typeof value === 'string') {
         params = { ...params, [key]: value };
       } else {
-        const values = Object.values(value);
-        if (values.length) params = { ...params, [key]: values.reduce((a: number, b: number) => a + '↕' + b) };
+        const values: number[] = Object.values(value);
+        if (values.length) params = { ...params, [key]: values.join('↕') };
       }
     });
   }

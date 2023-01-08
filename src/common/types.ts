@@ -3,15 +3,15 @@ import { ChangeEvent } from 'react';
 export interface PrimaryCheckboxProps {
   id: number;
   title: string;
-  checked?: boolean;
-  realAmount?: number;
-  allAmount?: number;
+  checked: boolean;
+  realAmount: number;
+  allAmount: number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface ProductCardProps {
-  product?: FullProductProps;
-  productCardClass?: string;
+  product: FullProductProps;
+  productCardClass: string;
 }
 
 export interface FullProductProps {
@@ -27,9 +27,9 @@ export interface FullProductProps {
 }
 
 export interface PropertyList {
-  title?: string;
-  realAmount?: number;
-  allAmount?: number;
+  title: string;
+  realAmount: number;
+  allAmount: number;
 }
 
 export interface CartProducts {

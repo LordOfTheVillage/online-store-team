@@ -4,11 +4,10 @@ interface PrimaryInputProps {
   title: string;
   pattern?: string;
   startSearchSettings?: string;
-  onChange?: (data: string | React.FormEvent<HTMLInputElement>) => void;
-	value?: string;
-	id?: string;
-	type?: string;
-	isDate?: boolean
+  onChange: (data: string) => void;
+  value?: string;
+  id?: string;
+  type?: string;
 }
 
 export const PrimaryInput: React.FC<PrimaryInputProps> = (props) => {
@@ -18,18 +17,7 @@ export const PrimaryInput: React.FC<PrimaryInputProps> = (props) => {
     const target = e.target as HTMLInputElement;
     setValue(target.value);
     props.onChange(target.value);
-
-		if(props.isDate) dateCheck(target);
   };
-
-	const dateCheck = (target: HTMLInputElement) => {
-		let cardDate = target.value;
-		if(cardDate.length === 2 && Array.from(cardDate).every(item => 
-			typeof +item === 'number' && !isNaN(+item)))
-		cardDate = `${cardDate}/`
-
-		setValue(cardDate)
-	}
 
   useEffect(() => {
     setValue(props.startSearchSettings || '');
@@ -42,8 +30,8 @@ export const PrimaryInput: React.FC<PrimaryInputProps> = (props) => {
       placeholder={props.title}
       pattern={props.pattern}
       value={value}
-			id={props.id}
-			type={props.type}
+      id={props.id}
+      type={props.type}
     />
   );
 };
