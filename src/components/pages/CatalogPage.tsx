@@ -62,10 +62,6 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
     setFilters({});
   };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(document.location.href);
-  };
-
   const handleProductCardDisplay = (display: string) => {
     setProductCardDisplay(`${display}`);
   };
@@ -115,7 +111,6 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
           sections={sectionsArr}
           startSearchSettings={filters.search}
           updateSearch={handleUpdateFilter('search')}
-          copyConfig={handleCopy}
           clearConfig={handleClear}
         />
         <div className="catalog-content__second-item">
