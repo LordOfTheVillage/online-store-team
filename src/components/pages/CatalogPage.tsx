@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { FilterValue, Filters, PropertyList } from 'src/common/types';
+import { Filters, PropertyList } from 'src/common/types';
 import { ALL_PRODUCTS as cards } from '../../common/data';
 import { Catalog } from '../modules/Catalog';
 import { Filter } from '../modules/Filtr';
@@ -45,12 +45,12 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
   useEffect(() => {
     setSearchParams({
       ...saveQueryFilters(filters),
-      ...saveQueryPrimitive(sort, 'sort'),
+      ...saveQueryPrimitive(sort as string, 'sort'),
       ...saveQueryPrimitive(productCardDisplay, 'display'),
     });
   }, [filters, sort, productCardDisplay]);
 
-  const handleUpdateFilter = (field: string) => (data: FilterValue) => {
+  const handleUpdateFilter = (field: string) => (data: unknown) => {
     setFilters({ ...filters, [field]: typeof data === 'string' ? [data] : data } as Filters);
   };
 
@@ -122,7 +122,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
           <Sort
             options={Object.keys(SORTS_CONFIG)}
             length={products.length}
-            startSetting={sort}
+            startSetting={sort as string}
             updateSorting={handleUpdateSorting}
             getProductCardDisplay={handleProductCardDisplay}
           />

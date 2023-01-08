@@ -8,21 +8,22 @@ import ProductInfo from '../modules/ProductInfo';
 import { AppRoutes } from '../utils/pathes';
 import { getProductById } from '../utils/utils';
 
-export const ProductPage: React.FC = (): any => {
+interface ProductPageProps {}
+
+export const ProductPage: React.FC<ProductPageProps> = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = useMemo<FullProductProps>(() => getProductById(id, ALL_PRODUCTS), [id]);
+  const product = useMemo<FullProductProps>(() => getProductById(id as string, ALL_PRODUCTS), [id]);
 
   useEffect(() => {
-    if (!getProductById(id, ALL_PRODUCTS)) navigate(AppRoutes.undefined);
+    if (!getProductById(id as string, ALL_PRODUCTS)) navigate(AppRoutes.undefined);
   }, [id]);
 
   return product ? (
     <>
-      
       <div className="catalog-page wrapper">
         <div className="container page-content product-content">
-				<Breadcrumb product={product} />
+          <Breadcrumb product={product} />
           {/* <div className="product-content__way"></div> */}
           <div className="product-content__product product">
             <ProductGallery images={product?.images} />

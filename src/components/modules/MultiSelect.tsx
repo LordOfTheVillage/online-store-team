@@ -19,7 +19,8 @@ export const MultiSelect: FC<MultiSelectProps> = ({ list, startSettings, updateL
 
   const handleSelectItems = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
-    const label = target.parentNode.lastChild as HTMLLabelElement;
+    const parent = target.parentNode as HTMLElement;
+    const label = parent.lastChild as HTMLLabelElement;
     const span = label.firstChild as HTMLSpanElement;
     const text: string = span.innerText;
     const hasElement: boolean = checkedList.includes(text);
@@ -39,9 +40,9 @@ export const MultiSelect: FC<MultiSelectProps> = ({ list, startSettings, updateL
           key={i}
           checked={startSettings === undefined ? false : startSettings.findIndex((s) => s === e.title) !== -1}
           onChange={handleSelectItems}
-          realAmount={e.realAmount}
-          allAmount={e.allAmount}
-          title={e.title}
+          realAmount={e.realAmount as number}
+          allAmount={e.allAmount as number}
+          title={e.title as string}
           id={i}
         />
       ))}

@@ -3,10 +3,10 @@ import { PrimarySelect } from '../simple/PrimarySelect';
 
 interface SortProps {
   options: string[];
-  startSetting?: string;
-  length?: number;
+  startSetting: string;
+  length: number;
   updateSorting: (sort: string) => void;
-  getProductCardDisplay?: (display: string) => void;
+  getProductCardDisplay: (display: string) => void;
 }
 
 export const Sort: React.FC<SortProps> = (props) => {

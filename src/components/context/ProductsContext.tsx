@@ -27,7 +27,7 @@ export const ProductsContextProvider: FC<ProviderProps> = ({ children }) => {
   const storageKey: string = 'products';
   const [products, setProducts] = useState<CartProducts[]>(() => {
     try {
-      const list: CartProducts[] = JSON.parse(localStorage.getItem(storageKey));
+      const list: CartProducts[] = JSON.parse(localStorage.getItem(storageKey) as string);
       return list === null ? [] : list;
     } catch (error) {
       return [];

@@ -1,7 +1,7 @@
 import { FullProductProps, PropertyList } from 'src/common/types';
 
 export const getProductById = (id: string, products: FullProductProps[]): FullProductProps => {
-  return products.find((e) => e.id === id);
+  return products.find((e) => e.id === id) as FullProductProps;
 };
 
 export const generateListByProperty = (source: FullProductProps[], subSource: FullProductProps[], property: string) => {
