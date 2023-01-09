@@ -1,32 +1,41 @@
 const path = require('path');
-
-module.exports = (env) => {
-  const modules = {
-    js: {
-      test: /\.ts(x?)$/,
-      exclude: /node_modules/,
-      use: [
-        {
-          loader: 'ts-loader',
-        },
-      ],
-    },
-    css: {
-      test: /\.css$/,
-      use: ['style-loader', 'css-loader', 'postcss-loader'],
-    },
-  };
-
-  const resolve = {
-    extensions: ['.ts', '.tsx', '.js', '.jsx'],
-    alias: {
-      App: path.resolve(__dirname, 'src/App/'),
-      Pages: path.resolve(__dirname, 'src/Pages/'),
-    },
-  };
-
-  return {
-    modules,
-    resolve,
-  };
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+  mode: 'development',
+  entry: './src/index.tsx',
+  devtool: 'inline-source-map',
+  output: {
+    path: path.join(__dirname, '/dist'),
+    filename: 'bundle.js',
+  },
+  devtool: 'inline-source-map',
+  devServer: {
+    static: './dist',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/html/template.html',
+    }),
+  ],
 };
