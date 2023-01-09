@@ -22,19 +22,29 @@ export const generateListByProperty = (source: FullProductProps[], subSource: Fu
 };
 
 export const generateRangeByProperty = (source: FullProductProps[], property: string): Record<string, number> => {
-  const startItem = source[0] as FullProductProps;
-  const startValue = startItem[property as keyof typeof startItem] as number;
+  const array: number[] = source.map((e) => e[property as keyof typeof e] as number);
+  const min = Math.min(...array);
+  const max = Math.max(...array);
+  return { min, max };
+  // const startItem = source[0] as FullProductProps;
+  // const startValue = startItem[property as keyof typeof startItem] as number;
 
-  const range: Record<string, number> = { min: startValue, max: startValue };
+  // const range: Record<string, number> = { min: startValue, max: startValue };
 
-  source.forEach((element) => {
-    const value = element[property as keyof typeof element] as number;
-    if (value < range.min) range.min = value;
-    if (value > range.max) range.max = value;
-  });
+  // source.forEach((element) => {
+  //   const value = element[property as keyof typeof element] as number;
+  //   if (value < range.min) range.min = value;
+  //   if (value > range.max) range.max = value;
+  // });
 
-  return range;
+  // return range;
 };
+
+export const getMinValue = (source: number[], defaultValue: number) =>
+  source.length ? source.reduce((acc, value) => (value < acc ? value : acc)) : defaultValue;
+
+export const getMaxValue = (source: number[], defaultValue: number) =>
+  source.length ? source.reduce((acc, value) => (value > acc ? value : acc)) : defaultValue;
 
 export const getStringByProperties = (object: FullProductProps, properties: string[]) => {
   return Object.keys(object)

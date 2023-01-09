@@ -11,7 +11,7 @@ import { DualSlider } from '../simple/DualSlider';
 import { FILTERS_CONFIG } from '../utils/filters';
 import { parseQueryFilters, parseQueryPrimitive, saveQueryFilters, saveQueryPrimitive } from '../utils/query';
 import { SORTS_CONFIG } from '../utils/sorts';
-import { generateListByProperty, generateRangeByProperty } from '../utils/utils';
+import { generateListByProperty, generateRangeByProperty, getMaxValue, getMinValue } from '../utils/utils';
 
 interface CatalogPageProps {}
 
@@ -22,6 +22,7 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
   );
   const [sort, setSort] = useState<string>(() => parseQueryPrimitive(searchParams, 'sort'));
   const [filters, setFilters] = useState<Filters>(() => parseQueryFilters(searchParams, Object.keys(cards[0])));
+  // const [selectedCheckbox, setSelectedCheckbox] = useState<string[]>([]);
 
   const products = useMemo(
     () =>
@@ -39,8 +40,102 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
 
   const authors = useMemo<PropertyList[]>(() => generateListByProperty(cards, products, 'author'), [products]);
   const categories = useMemo<PropertyList[]>(() => generateListByProperty(cards, products, 'category'), [products]);
-  const prices = useMemo<Record<string, number>>(() => generateRangeByProperty(cards, 'price'), []);
-  const stock = useMemo<Record<string, number>>(() => generateRangeByProperty(cards, 'stock'), []);
+  const prices = useMemo<Record<string, number>>(
+    () => generateRangeByProperty(products.length ? products : cards, 'price'),
+    [products]
+  );
+  const stock = useMemo<Record<string, number>>(
+    () => generateRangeByProperty(products.length ? products : cards, 'stock'),
+    [products]
+  );
+  const initialPrice = useMemo(() => generateRangeByProperty(cards, 'price'), []);
+  const initialStock = useMemo(() => generateRangeByProperty(cards, 'stock'), []);
+
+  // const filteredCards = useMemo(
+  //   () =>
+  //     cards
+  //       .filter((element) => selectedCheckbox.includes(element.author) || selectedCheckbox.includes(element.category))
+  //       .map(({ price }) => price),
+  //   [selectedCheckbox]
+  // );
+
+  const filteredCards = useMemo(() => {
+    return cards.filter((element) => {
+      return (
+        authors.findIndex((e) => e.realAmount > 0 && e.title === element.author) !== -1 &&
+        categories.findIndex((e) => e.realAmount > 0 && e.title === element.category) !== -1
+      );
+    });
+  }, [authors, categories]);
+
+  const minPrice = useMemo(
+    () =>
+      getMinValue(
+        filteredCards.map(({ price }) => price),
+        prices.min
+      ),
+    [filteredCards]
+  );
+
+  const maxPrice = useMemo(
+    () =>
+      getMaxValue(
+        filteredCards.map(({ price }) => price),
+        prices.max
+      ),
+    [filteredCards]
+  );
+
+  const minStock = useMemo(
+    () =>
+      getMinValue(
+        filteredCards.map(({ stock }) => stock),
+        stock.min
+      ),
+    [filteredCards]
+  );
+
+  const maxStock = useMemo(
+    () =>
+      getMaxValue(
+        filteredCards.map(({ stock }) => stock),
+        stock.max
+      ),
+    [filteredCards]
+  );
+
+  // const filteredNames = useMemo(() => {
+  //   return cards.filter((element) => {
+  //     return (
+  //       authors.findIndex((e) => e.realAmount > 0 && e.title === element.author) !== -1 &&
+  //       categories.findIndex((e) => e.realAmount > 0 && e.title === element.category) !== -1
+  //     );
+  //   });
+  // }, [authors, categories]);
+
+  // const initialPrice = () => {
+  //   const array = cards.map(({ price }) => price);
+  //   const min = Math.min(...array);
+  //   const max = Math.max(...array);
+  //   return { min, max };
+  // };
+
+  // console.log('filteredCards', filteredCards);
+  // console.log(getMinValue(), getMaxValue());
+  // const minMaxPrice = useMemo(() => {
+  //   return cards
+  //     .filter((element) => selectedCheckbox.includes(element.author) || selectedCheckbox.includes(element.category))
+  //     .reduce(
+  //       (acc: any, value) => {
+
+  //         if (value.price < acc.min) acc.min = value.price;
+  //         if (value.price > acc.max) acc.max = value.price;
+  //         return acc;
+  //       },
+  //       { min: 100, max: 0 }
+  //       {}
+  //     );
+  // }, [selectedCheckbox]);
 
   useEffect(() => {
     setSearchParams({
@@ -50,8 +145,26 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
     });
   }, [filters, sort, productCardDisplay]);
 
+  // console.log('selectedCheckbox', selectedCheckbox);
+
   const handleUpdateFilter = (field: string) => (data: unknown) => {
     setFilters({ ...filters, [field]: typeof data === 'string' ? [data] : data } as Filters);
+    // if (!target) return;
+    // if ([`author`, 'category'].includes(field)) setSelectedCheckbox(data);
+    // console.log('target', target);
+    // const checked = target.checked;
+    // console.log('checked', checked);
+    // if ([`author`, 'category'].includes(field)) {
+    //   setSelectedCheckbox(data);
+    // console.log('field', field);
+    // setSelectedCheckbox((prevState) => {
+    //   console.log('prevState', prevState);
+    //   console.log('string', string);
+    //   return checked
+    //     ? [...prevState, target.value].flat()
+    //     : prevState.flat().filter((element) => element !== target.value);
+    // });
+    // }
   };
 
   const handleUpdateSorting = (sort: string) => {
@@ -88,9 +201,10 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
       sectionsContent: (
         <DualSlider
           updateList={handleUpdateFilter('price')}
-          startSettings={filters.price}
-          min={prices.min}
-          max={prices.max}
+          // startSettings={filters.price}
+          startSettings={initialPrice}
+          min={minPrice}
+          max={maxPrice}
         />
       ),
     },
@@ -99,9 +213,10 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
       sectionsContent: (
         <DualSlider
           updateList={handleUpdateFilter('stock')}
-          startSettings={filters.stock}
-          min={stock.min}
-          max={stock.max}
+          // startSettings={filters.stock}
+          startSettings={initialStock}
+          min={minStock}
+          max={maxStock}
         />
       ),
     },

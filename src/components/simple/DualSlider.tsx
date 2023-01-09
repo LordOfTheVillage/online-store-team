@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 interface DualSliderProps {
   min: number;
   max: number;
-  startSettings?: Record<string, number> | undefined;
+  startSettings: Record<string, number>;
   updateList: (list: Record<string, number>) => void;
 }
 
@@ -15,11 +15,16 @@ export const DualSlider: React.FC<DualSliderProps> = ({ updateList, startSetting
   const maxValRef = useRef(max);
 
   useEffect(() => {
-    if (startSettings) {
-      setMinVal(startSettings.min);
-      setMaxVal(startSettings.max);
-    }
-  }, []);
+    setMinVal(min);
+    setMaxVal(max);
+  }, [min, max]);
+
+  // useEffect(() => {
+  //   if (startSettings) {
+  //     setMinVal(startSettings.min);
+  //     setMaxVal(startSettings.max);
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (
@@ -40,8 +45,8 @@ export const DualSlider: React.FC<DualSliderProps> = ({ updateList, startSetting
     <div className="slider-container">
       <input
         type="range"
-        min={min}
-        max={max}
+        min={startSettings.min}
+        max={startSettings.max}
         value={minVal}
         onChange={(event) => {
           const value = Math.min(Number(event.target.value), maxVal - 1);
@@ -52,8 +57,8 @@ export const DualSlider: React.FC<DualSliderProps> = ({ updateList, startSetting
       />
       <input
         type="range"
-        min={min}
-        max={max}
+        min={startSettings.min}
+        max={startSettings.max}
         value={maxVal}
         onChange={(event) => {
           const value = Math.max(Number(event.target.value), minVal + 1);

@@ -17,7 +17,7 @@ export const PrimaryCheckbox: React.FC<PrimaryCheckboxProps> = (props) => {
         onChange={props.onChange}
         className="checkbox-primary__input"
         id={`${props.id + id}`}
-        value="yes"
+        value={props.title}
       />
       <label className="checkbox-primary__label" htmlFor={`${props.id + id}`}>
         <span>{props.title}</span>
