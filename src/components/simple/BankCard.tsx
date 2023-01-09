@@ -11,19 +11,21 @@ export const BankCard: React.FC<bankCardProps> = ({ onChange, cardData }) => {
   const [cardValue, setCardValue] = useState(cardData);
   const [logo, setLogo] = useState('card__logo');
 
-  const changeCardNumber = (e: React.FormEvent<HTMLInputElement>) => {
-    const cardNumber = e.toString();
-    setCardValue(
-      cardValue.map((item) => {
-        if (item.id === 'cardNumber') item.value = cardNumber;
-        return item;
-      })
-    );
-
-    if (cardNumber[0] === '4') setLogo(`card__logo card__logo-visa`);
-    else if (cardNumber[0] === '5') setLogo(`card__logo card__logo-mastercard`);
-    else if (cardNumber[0] === '6') setLogo(`card__logo card__logo-unionpay`);
-    else setLogo(`card__logo`);
+  const changeCardNumber = (e: React.FormEvent) => {
+    const target = e.target as HTMLInputElement;
+		const cardNumber = target.value;
+		
+		setCardValue(
+		  cardValue.map((item) => {
+		    if (item.id === 'cardNumber') item.value = cardNumber;
+		    return item;
+		  })
+		);
+			
+		if (cardNumber[0] === '4') setLogo(`card__logo card__logo-visa`);
+		else if (cardNumber[0] === '5') setLogo(`card__logo card__logo-mastercard`);
+		else if (cardNumber[0] === '6') setLogo(`card__logo card__logo-unionpay`);
+		else setLogo(`card__logo`);
   };
 
   const changeCardDate = (e: React.FormEvent<HTMLInputElement>) => {
