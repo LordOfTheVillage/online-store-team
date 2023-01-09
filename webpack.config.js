@@ -17,10 +17,6 @@ module.exports = (env) => {
     },
   };
 
-  if (env === 'production') {
-    modules.stylus.use.splice(2, 0, { loader: 'postcss-loader' });
-  }
-
   const resolve = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
