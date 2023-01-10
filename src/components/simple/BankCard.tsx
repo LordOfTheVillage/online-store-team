@@ -60,6 +60,7 @@ export const BankCard: React.FC<bankCardProps> = ({ onChange, cardData }) => {
           id={cardValue[0].id}
           title={cardValue[0].title}
           pattern={cardValue[0].pattern}
+					// type={cardValue[0].type}
           value={cardValue[0].value}
           onChange={(e: React.FormEvent<HTMLInputElement>) => changeCardNumber(e)}
         />
