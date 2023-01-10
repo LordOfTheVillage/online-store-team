@@ -27,8 +27,8 @@ export const Counter: React.FC<CounterProps> = (props) => {
       <button
         className="counter__btn"
         onClick={() => {
+          if (count + 1 <= props.maxVal) props.updateValue('up');
           setCount(count + 1 > props.maxVal ? props.maxVal : count + 1);
-          props.updateValue('up');
         }}
       ></button>
     </div>
