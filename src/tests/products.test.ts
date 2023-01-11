@@ -1,5 +1,5 @@
 import { CartProducts } from 'src/common/types';
-import { getTotalPrice } from '../components/utils/products';
+import { getAmount, getTotalPrice } from '../components/utils/products';
 
 const products: CartProducts[] = [
   {
@@ -48,7 +48,44 @@ const products: CartProducts[] = [
 
 describe('Get total price', () => {
   test('simple price sum', () => {
+    const testProducts = [...products.map((product) => ({ ...product }))];
     const expected = 2100;
-    expect(getTotalPrice(products)).toBe(expected);
+    expect(getTotalPrice(testProducts)).toBe(expected);
+  });
+
+  test('simple price sum with count = 0', () => {
+    const testProducts = [...products.map((product) => ({ ...product }))];
+    testProducts[0].count = 0;
+    const expected = 1600;
+    expect(getTotalPrice(testProducts)).toBe(expected);
+  });
+
+  test('simple price sum with count < 0', () => {
+    const testProducts = [...products.map((product) => ({ ...product }))];
+    testProducts[0].count = -1;
+    const expected = 1500;
+    expect(getTotalPrice(testProducts)).toBe(expected);
+  });
+
+  test('simple price sum with price < 0', () => {
+    const testProducts = [...products.map((product) => ({ ...product }))];
+    testProducts[0].value.price = -100;
+    const expected = 1100;
+    expect(getTotalPrice(testProducts)).toBe(expected);
+  });
+});
+
+describe('get amount', () => {
+  test('simple amount', () => {
+    const testProducts = [...products.map((product) => ({ ...product }))];
+    const expected = 10;
+    expect(getAmount(testProducts)).toBe(expected);
+  });
+
+  test('simple amount with count = 0', () => {
+    const testProducts = [...products.map((product) => ({ ...product }))];
+    testProducts[0].count = -1;
+    const expected = 4;
+    expect(getAmount(testProducts)).toBe(expected);
   });
 });
