@@ -27,17 +27,17 @@ describe('Primary input tests', () => {
   });
 
   test('should create input with workable change function', async () => {
-    let startValue = '';
+    let suspectedValue = '';
     const expectedValue = '1fer3';
     const props = {
       ...defaultProps,
       onChange: (data: string) => {
-        startValue = data;
+        suspectedValue = data;
       },
     };
     const { findByPlaceholderText } = render(<PrimaryInput {...props} />);
     const input = (await findByPlaceholderText(props.title)) as HTMLInputElement;
     fireEvent.change(input, { target: { value: expectedValue } });
-    expect(startValue).toBe(expectedValue);
+    expect(suspectedValue).toBe(expectedValue);
   });
 });

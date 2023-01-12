@@ -11,13 +11,13 @@ export const PrimaryCheckbox: React.FC<PrimaryCheckboxProps> = (props) => {
   }, [id, props.checked]);
 
   return (
-    <div className="checkbox-primary">
+    <div data-testid={'checkbox-primary'} className="checkbox-primary">
       <input
         type="checkbox"
         onChange={props.onChange}
         className="checkbox-primary__input"
         id={`${props.id + id}`}
-        value="yes"
+        value={props.title}
       />
       <label className="checkbox-primary__label" htmlFor={`${props.id + id}`}>
         <span>{props.title}</span>
