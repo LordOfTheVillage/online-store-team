@@ -9,6 +9,7 @@ interface FormInputProps {
   id?: string;
   type?: string;
   isDate?: boolean;
+	isNumber?: boolean;
 }
 
 export const FormInput: React.FC<FormInputProps> = (props) => {
@@ -18,14 +19,26 @@ export const FormInput: React.FC<FormInputProps> = (props) => {
     const target = e.target as HTMLInputElement;
     setValue(target.value);
     props.onChange(e);
+		if (props.isNumber) numberCheck(target);
     if (props.isDate) dateCheck(target);
   };
 
   const dateCheck = (target: HTMLInputElement) => {
     let cardDate = target.value;
-    if (cardDate.length === 2 && Array.from(cardDate).every((item) => typeof +item === 'number' && !isNaN(+item)))
-      cardDate = `${cardDate}/`;
-    setValue(cardDate);
+		setValue(cardDate);
+		if(cardDate.at(-1) !== '/' || cardDate.length !== 3) numberCheck(target)
+    if (cardDate.length === 2 && Array.from(cardDate).every((item) => typeof +item === 'number' && !isNaN(+item))){
+			cardDate = `${cardDate}/`;
+    	setValue(cardDate);
+		}
+  };
+
+	const numberCheck = (target: HTMLInputElement) => {
+    let number;
+		const newVal = target.value;
+    if(!isNaN(+newVal[newVal.length - 1])) number = target.value;
+		else number = target.value.slice(0, -1);
+    setValue(number);
   };
 
   useEffect(() => {
@@ -37,10 +50,11 @@ export const FormInput: React.FC<FormInputProps> = (props) => {
       className="input-primary"
       onChange={handleChange}
       placeholder={props.title}
+			type={props.type}
       pattern={props.pattern}
       value={value}
       id={props.id}
-      type={props.type}
+      
     />
   );
 };
