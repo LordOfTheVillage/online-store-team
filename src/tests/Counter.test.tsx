@@ -11,10 +11,7 @@ describe('Primary input tests', () => {
 		value: 5,
 		maxVal: 10,
 		minVal: 0,
-		updateValue: (mode: string) => {
-			if (mode === 'up') console.log('up');
-			else if (mode === 'down') console.log('down');
-		}
+		updateValue: (mode: string) => {}
 	}
 
   test('click on up button', async () => {
