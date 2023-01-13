@@ -13,15 +13,18 @@ export const BankCard: React.FC<bankCardProps> = ({ onChange, cardData }) => {
 
   const changeCardNumber = (e: React.FormEvent) => {
     const target = e.target as HTMLInputElement;
+		// const oldCardNumber = cardValue.find(item => item.id === 'cardNumber')?.value;
 		const cardNumber = target.value;
-		
+		// console.log(cardNumber)
+		// target.value = cardNumber;
+
 		setCardValue(
 		  cardValue.map((item) => {
 		    if (item.id === 'cardNumber') item.value = cardNumber;
 		    return item;
 		  })
 		);
-			
+	
 		if (cardNumber[0] === '4') setLogo(`card__logo card__logo-visa`);
 		else if (cardNumber[0] === '5') setLogo(`card__logo card__logo-mastercard`);
 		else if (cardNumber[0] === '6') setLogo(`card__logo card__logo-unionpay`);
@@ -29,7 +32,9 @@ export const BankCard: React.FC<bankCardProps> = ({ onChange, cardData }) => {
   };
 
   const changeCardDate = (e: React.FormEvent<HTMLInputElement>) => {
-    let cardDate = e.toString();
+    const target = e.target as HTMLInputElement;
+		const cardDate = target.value;
+		// console.log(cardDate)
     setCardValue(
       cardValue.map((item) => {
         if (item.id === 'date') item.value = cardDate;
@@ -61,6 +66,7 @@ export const BankCard: React.FC<bankCardProps> = ({ onChange, cardData }) => {
           title={cardValue[0].title}
           pattern={cardValue[0].pattern}
           value={cardValue[0].value}
+					isNumber={true}
           onChange={(e: React.FormEvent<HTMLInputElement>) => changeCardNumber(e)}
         />
       </div>
@@ -79,6 +85,7 @@ export const BankCard: React.FC<bankCardProps> = ({ onChange, cardData }) => {
           id={cardValue[2].id}
           title={cardValue[2].title}
           pattern={cardValue[2].pattern}
+					isNumber={true}
           value={cardValue[2].value}
           onChange={(e: React.FormEvent<HTMLInputElement>) =>
             setCardValue(

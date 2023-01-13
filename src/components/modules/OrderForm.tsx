@@ -14,12 +14,13 @@ const cardData: Array<inputData> = [
     id: 'cardNumber',
     title: 'Card number',
     pattern: '\\d{16}',
+		type: 'number',
     value: '',
   },
   {
     id: 'date',
     title: 'Valid Thru',
-    pattern: '((0[1-9])|([12][0-9])|(3[01]))\\/((0[1-9])|(1[1-2]))',
+    pattern: '((0[1-9])|(1[1-2]))\\/(\\d\\d)',
     value: '',
   },
   {

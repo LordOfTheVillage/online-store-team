@@ -21,7 +21,9 @@ export const CatalogPage: React.FC<CatalogPageProps> = () => {
     () => parseQueryPrimitive(searchParams, 'display') || 'max'
   );
   const [sort, setSort] = useState<string>(() => parseQueryPrimitive(searchParams, 'sort'));
-  const [filters, setFilters] = useState<Filters>(() => parseQueryFilters(searchParams, Object.keys(cards[0])));
+  const [filters, setFilters] = useState<Filters>(() =>
+    parseQueryFilters(searchParams, [...Object.keys(cards[0]), 'search'])
+  );
 
   const products = useMemo(
     () =>

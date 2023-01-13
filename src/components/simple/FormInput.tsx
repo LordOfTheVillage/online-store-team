@@ -1,4 +1,5 @@
 import React, { FormEvent, useEffect, useState } from 'react';
+import { dateCheck, numberCheck } from '../utils/check';
 
 interface FormInputProps {
   title: string;
@@ -9,6 +10,7 @@ interface FormInputProps {
   id?: string;
   type?: string;
   isDate?: boolean;
+	isNumber?: boolean;
 }
 
 export const FormInput: React.FC<FormInputProps> = (props) => {
@@ -16,16 +18,11 @@ export const FormInput: React.FC<FormInputProps> = (props) => {
 
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
-    setValue(target.value);
+		let cardDate = target.value;
     props.onChange(e);
-    if (props.isDate) dateCheck(target);
-  };
-
-  const dateCheck = (target: HTMLInputElement) => {
-    let cardDate = target.value;
-    if (cardDate.length === 2 && Array.from(cardDate).every((item) => typeof +item === 'number' && !isNaN(+item)))
-      cardDate = `${cardDate}/`;
-    setValue(cardDate);
+		if (props.isNumber) cardDate = numberCheck(cardDate);
+    if (props.isDate) cardDate = dateCheck(cardDate);
+		setValue(cardDate);
   };
 
   useEffect(() => {
@@ -37,10 +34,11 @@ export const FormInput: React.FC<FormInputProps> = (props) => {
       className="input-primary"
       onChange={handleChange}
       placeholder={props.title}
+			type={props.type}
       pattern={props.pattern}
       value={value}
       id={props.id}
-      type={props.type}
+      
     />
   );
 };

@@ -17,18 +17,18 @@ export const Counter: React.FC<CounterProps> = (props) => {
   return (
     <div className="counter">
       <button
-        className="counter__btn"
+        className="counter__btn" data-testid="counter-btn-down"
         onClick={() => {
           if (!(count - 1 < props.minVal)) setCount(count - 1);
           props.updateValue('down');
         }}
       ></button>
-      <div className="counter__val">{count}</div>
+      <div className="counter__val" data-testid="counter-val">{count}</div>
       <button
-        className="counter__btn"
+        className="counter__btn" data-testid="counter-btn-up"
         onClick={() => {
+          if (count + 1 <= props.maxVal) props.updateValue('up');
           setCount(count + 1 > props.maxVal ? props.maxVal : count + 1);
-          props.updateValue('up');
         }}
       ></button>
     </div>
