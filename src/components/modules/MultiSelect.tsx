@@ -19,10 +19,7 @@ export const MultiSelect: FC<MultiSelectProps> = ({ list, startSettings, updateL
 
   const handleSelectItems = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
-    const parent = target.parentNode as HTMLElement;
-    const label = parent.lastChild as HTMLLabelElement;
-    const span = label.firstChild as HTMLSpanElement;
-    const text: string = span.innerText;
+    const text: string = target.value;
     const hasElement: boolean = checkedList.includes(text);
 
     target.checked = !hasElement;
