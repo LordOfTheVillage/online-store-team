@@ -5,7 +5,7 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { PrimarySelect } from '../components/simple/PrimarySelect';
 
-describe('Primary input tests', () => {
+describe('primary select tests', () => {
 
 	const funcOnSelect = jest.fn();
 
