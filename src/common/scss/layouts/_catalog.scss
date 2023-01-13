@@ -1,0 +1,20 @@
+.catalog{
+	display: flex;
+	flex-wrap: wrap;
+	// margin: 0 -1.25%;
+	// justify-content: space-between;
+	& >*{
+		
+	}
+}
+
+
+
+.catalog-content{
+	display: flex;
+	justify-content: space-between;
+
+	&__second-item{
+		flex-basis: 80%;
+	}
+}

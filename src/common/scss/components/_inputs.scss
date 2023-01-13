@@ -1,0 +1,35 @@
+
+// PrimaryInput
+
+.input-primary{
+	display: flex;
+	align-items: center;
+	text-align: center;
+	width: 100%;
+  height: 2.5rem;
+  padding: 2px 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: $black;
+  background-color: #fff;
+  border: 1px solid #E0BEA2;
+}
+
+// .input-primary:invalid{
+// 	border: 1px solid red;
+// }
+
+.input-invalid{
+	border: 1px solid red;
+	// width: 70%;
+	// margin-right: 30px;
+}
+
+.input-parent{
+	width: 100%;
+	display: flex;
+	
+}
+// .input-primary:before{
+// 	content: '2222';
+// }

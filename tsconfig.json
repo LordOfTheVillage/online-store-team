@@ -1,25 +1,18 @@
 {
-  "include": [
-    "src/**/**/*", 
-    "tsconfig.json",
-  ],
   "compilerOptions": {
+    "target": "es5",
     "jsx": "react",
-    "moduleResolution": "node",
-    "target": "esnext",
-    "module": "es6",
-    "allowJs": true,
-    "checkJs": false,
-    "outDir": "build",
-    "rootDir": ".",
-    "noImplicitAny": true,
     "strict": true,
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "removeComments": true,
+    "noImplicitAny": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "declaration": true,
-    "strictNullChecks": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "App": ["src/app"],
+      "Pages/*": ["src/pages1/*"]
+    }
   },
-   "exclude": ["node_modules", "build"],
+  "exclude": ["node_modules"]
 }

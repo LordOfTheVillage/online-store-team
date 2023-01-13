@@ -1,0 +1,68 @@
+//Button
+
+.btn{
+
+	background: $gold-l;
+	color: $white;
+
+	&:hover{
+		filter: drop-shadow(0px 5px 7px $black-shadow);
+	}
+
+	&:active, &-active{
+		background: $gold-d;
+		box-shadow: inset 0px 3px 7px $black-shadow;
+	}
+
+	&-primary{
+		padding: 16px 30px;
+		text-transform: uppercase;
+		// @include btnEffect;
+	}
+
+	&-view{
+		width: 30px;
+		height: 30px;
+		@include border;
+
+		&:first-of-type{
+			background: url("./assets/icons/view-1.svg") no-repeat;
+			background-position: center;
+			background-size: contain;
+		}
+
+		&:last-of-type{
+			background: url("./assets/icons/view-1.svg");
+			background-position: center;
+			background-size: 50%;
+		}
+	}
+
+	&-cart{
+		background: url("./assets/icons/cart-l.svg") right no-repeat;
+		width: 25px;
+		height: 25px;
+
+		&:hover{
+			background: url("./assets/icons/cart-d.svg") right no-repeat;
+		}
+
+		&-full{
+			background: url("./assets/icons/cart-full.svg") right no-repeat;
+			width: 25px;
+			height: 25px;
+		}
+	}
+
+	&-basket{
+		background: url("./assets/icons/basket.svg") no-repeat;
+		background-position: center;
+		width: 25px;
+		height: 25px;
+
+		&:hover{
+			background-position: right;
+		}
+	}
+}
+

@@ -1,0 +1,35 @@
+
+.select-primary {
+	display: inline-block;
+	position: relative;
+	margin-bottom: 10px;
+	width: 150px;
+}
+
+.select-primary:after {
+	content: "";
+	display: block;
+	border-style: solid;
+	border-width: 6px 5px 0 5px;
+	border-color: #E0BEA2 transparent transparent transparent;
+
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	z-index: 1;
+	margin-top: -3px;
+}
+
+.select-primary select {
+	display: block;
+	width: 100%;
+	padding: 10px 15px;
+	background: none;
+	border: 1px solid #E0BEA2;
+	border-radius: 3px;
+	-webkit-appearance: none;
+	appearance: none;
+
+	font-size: 16px;
+	color: $black;
+}
