@@ -1,6 +1,6 @@
 import { FullProductProps, PropertyList } from 'src/common/types';
 
-export const getProductById = (id: string, products: FullProductProps[]): FullProductProps => {
+export const getProductById = (id: string = '', products: FullProductProps[]): FullProductProps => {
   return products.find((e) => e.id === id) as FullProductProps;
 };
 
